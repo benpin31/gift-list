@@ -1,18 +1,36 @@
-{{#each lists.gift}}
-<div class="event-gift-view">
-    <div class="event-gift-view-desc">
+<div class="list">
+    {{list.name}}
+    <div class="gift-in-list">
+        {{#each list.gifts}}
         <ul>
             <li>{{this.name}}</li>
-            <li>{{list.name}} {{list.lastName}}</li>
             <li>{{this.price}}</li>
         </ul>
+    </div> 
+    <div>
+        {{#if this.isTaken}}
+            Has been bought
+        {{else}}
+            Nobody has bought it
+        {{/if}}
     </div>
+    {{/each}}
+
+    <form action="/list/addGift/{{list._id}}" method="post">
+        <label for="list-add-gifts"></label>
+        <select name="gifts" id="list-add-gifts" multiple>
+        {{#each gifts}}
+            <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+        </select>   
+        <button>Add a gift</button>
+    </form>
+
+    <form action="/list/addToUser/{{list._id}}" method="post">
+        <label for="list-add-to-user"></label>
+        <input type="email" name="email" id="list-add-to-user">
+        <button>Add to the user</button>
+    </form>
+
+    <a href="/list/delete/{{list._id}}">Delete the list</a>
 </div>
-<div class="is-bought">
-    {{#if gift.available}}
-        Nobody bought it 
-    {{else}}
-        Not available anymore
-    {{/if}}
-</div>
-{{/gift}}

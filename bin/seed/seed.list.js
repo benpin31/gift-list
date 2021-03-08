@@ -25,6 +25,7 @@ async function create() {
     {
       name: "Félix",
       lastName: "Féron",
+      gifts: await GiftModel.find({ name: "RAPA NUI TRAIL" }),
     },
     {
       name: "Benjamin",

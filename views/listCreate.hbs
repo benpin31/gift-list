@@ -1,12 +1,13 @@
 <form action="/list/create" method="post">
-<label for="name" name="name">Name</label>
-<input type="text" name="name" id="name">
-<label for="lastName" name="lastName">Last name</label>
-<input type="text" name="lastName" id="lastName">
-<label for="lastName" name="lastName">Last name</label>
-<select name="gifts" id="gifts" multiple>
-{{#each gifts}}
-    <option value="{{this._id}}">{{thid.name}}</option>
-{{/each}}
-</select>
+    <label for="list-create-name" name="name">Name</label>
+    <input type="text" name="name" id="list-create-name">
+    <label for="list-create-lastName" name="lastName">Last name</label>
+    <input type="text" name="lastName" id="list-create-lastName">
+    <label for="list-create-gifts" name="gifts">Gifts</label>
+    <select name="gifts" id="list-create-gifts" multiple>
+    {{#each gifts}}
+        <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+    </select>
+    <button>Create new list</button>
 </form>

@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./config/mongo");
 
 var createError = require('http-errors');
 var express = require('express');
@@ -8,9 +9,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var listRouter = require('./routes/users');
+var listRouter = require('./routes/list');
 
 var app = express();
+
+// local variable
+app.locals.userId = "6046378944cd3a28072f8dcc" ;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
