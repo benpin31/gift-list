@@ -2,7 +2,7 @@ const mongoose = require("mongoose") ;
 require("dotenv").config();
 require("./../../config/mongo"); 
 const userModel = require("./../../model/users"); 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const users = [
     {

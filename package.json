@@ -7,6 +7,8 @@
     "seed": " node bin/seed/users.js ; node bin/seed/giftedPersons.js ; node bin/seed/events.js ; node bin/seed/gifts.js"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "cloudinary": "^1.25.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
