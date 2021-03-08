@@ -1,7 +1,8 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = mongoose;
 
-const giftedPersonsSchema = new Schema({
+const listSchema = new Schema({
+  // name: type,
   name: {
     type: String,
     require: true,
@@ -13,14 +14,13 @@ const giftedPersonsSchema = new Schema({
   },
   // all fields are required : but maybe to name or last name could be optionnal
 
-  users: [
+  gifts: [
     {
       type: Schema.Types.ObjectId,
-      ref: "users",
+      ref: "gifts",
     },
   ],
 });
 
-const giftedPersonsModel = mongoose.model("gifted_persons", giftedPersonsSchema);
-
-module.exports = giftedPersonsModel;
+const ListModel = mongoose.model("lists", listSchema);
+module.exports = ListModel;

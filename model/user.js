@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
   name: {
@@ -29,8 +29,21 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+
+  lists: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "lists",
+    },
+  ],
+
+  events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "events",
+    },
+  ],
 });
 
-const usersSchema = mongoose.model("users", userSchema);
-
-module.exports = usersSchema;
+const UserModel = mongoose.model("users", userSchema);
+module.exports = UserModel;
