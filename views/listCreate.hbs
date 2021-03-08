@@ -1,0 +1,12 @@
+<form action="/list/create" method="post">
+<label for="name" name="name">Name</label>
+<input type="text" name="name" id="name">
+<label for="lastName" name="lastName">Last name</label>
+<input type="text" name="lastName" id="lastName">
+<label for="lastName" name="lastName">Last name</label>
+<select name="gifts" id="gifts" multiple>
+{{#each gifts}}
+    <option value="{{this._id}}">{{thid.name}}</option>
+{{/each}}
+</select>
+</form>

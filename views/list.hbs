@@ -1,0 +1,18 @@
+{{#each lists.gift}}
+<div class="event-gift-view">
+    <div class="event-gift-view-desc">
+        <ul>
+            <li>{{this.name}}</li>
+            <li>{{list.name}} {{list.lastName}}</li>
+            <li>{{this.price}}</li>
+        </ul>
+    </div>
+</div>
+<div class="is-bought">
+    {{#if gift.available}}
+        Nobody bought it 
+    {{else}}
+        Not available anymore
+    {{/if}}
+</div>
+{{/gift}}
