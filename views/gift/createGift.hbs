@@ -1,0 +1,46 @@
+<section class="newGift">
+<h1>Create a gift</h1>
+<form action="gift/create" method="post" class="createGift" enctype="multipart/form-data">
+
+<label for="name">Name</label>
+<input class="input" type="text" id="name" name="name">
+
+<label for="brand">Brand</label>
+<input class="input" type="text" id="brand" name="brand">
+
+<label for="picture">Image of the gift</label>
+<input class="input" type="file" id="picture" name="picture"> 
+
+<label for="url">Url</label>
+<input class="input" type="text" id="url" name="urls">
+
+<label for="description">Description or comment</label>
+<textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+<label for="price">Price</label>
+<input class="input" type="number" id="price" name="price">
+
+{{!-- todo: Replace fix value with dynamic ones --}}
+<select id="list" name="list" class="select" required>
+  <option value="-1" disabled selected>Choose a receiver</option>
+  <option value="60461fbdd031d330e7f8fbbc">Elliot FERON</option>
+  <option value="60461fbdd031d330e7f8fbbb">Charles FERON</option>
+  <option value="60461fbdd031d330e7f8fbbd">Félix FERON</option>
+</select>
+<a href="/">Add a new receiver</a>
+
+{{!-- todo: Replace fix value with dynamic ones --}}
+<select id="event" name="event class="select" required>
+  <option value="-1" disabled selected>Choose an event</option>
+  <option value="60461fbed2e83a30f41f16be">Christmas</option>
+  <option value="60461fbed2e83a30f41f16bf">Benjamin Birthday</option>
+</select>
+<a href="/">Add a new event</a>
+
+<label for="isFavorite"></label>
+<input class="input" type="checkbox" id="isFavorite" name="isFavorite">
+
+<button class="button-primary add-gift-btn">Add the gift</button>
+
+</form>
+</section>

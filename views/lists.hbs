@@ -1,0 +1,6 @@
+<div id="user-lists">
+    {{#each lists}} 
+    <a href="/list/{{this._id}}">{{this.name}}</a>
+    {{/each}}
+    <a href="/list/create">Create new list</a>
+</div>
