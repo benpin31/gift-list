@@ -8,12 +8,6 @@ const listSchema = new Schema({
     require: true,
   },
 
-  lastName: {
-    type: String,
-    require: true,
-  },
-  // all fields are required : but maybe to name or last name could be optionnal
-
   gifts: [
     {
       type: Schema.Types.ObjectId,

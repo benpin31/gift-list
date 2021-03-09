@@ -10,26 +10,20 @@ async function create() {
   const lists = [
     {
       name: "Mélanie",
-      lastName: "Féron",
       gifts: await GiftModel.find({ name: "Robe midi" }),
     },
     {
       name: "Charles",
-      lastName: "Féron",
       gifts: await GiftModel.find({ name: "RAPA NUI TRAIL" }),
     },
     {
       name: "Eliott",
-      lastName: "Féron",
     },
     {
       name: "Félix",
-      lastName: "Féron",
-      gifts: await GiftModel.find({ name: "RAPA NUI TRAIL" }),
     },
     {
       name: "Benjamin",
-      lastName: "Pinard",
       gifts: await GiftModel.find({ name: "PS5" }),
     },
   ];

@@ -54,7 +54,7 @@ router.post("/create", uploader.single("picture"), async (req, res, next) => {
   try {
     await GiftModel.create(newGift);
     console.log("New gift created");
-    res.redirect("/");
+    res.redirect("/lists/");
   } catch (error) {
     next(error);
   }
@@ -96,7 +96,7 @@ router.post("/update/:id", uploader.single("cover"), async (req, res, next) => {
       giftToUpdate,
       { new: true }
     );
-    res.redirect("/gifts/" + updatedGift.id);
+    res.redirect("/lists/");
   } catch (error) {
     next(error);
   }
