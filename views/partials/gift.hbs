@@ -1,19 +1,19 @@
 <div class="gift-constainer">
-<div class="Gift-pic-container">
-    <img src="{{gift.picture}}" alt="picture of {{gift.name}}" class="gift-picture">
+<div class="gift-pic-container">
+    <img src="{{this.picture}}" alt="picture of {{this.name}}" class="gift-picture">
 </div>
-  <div class="sneak-info">
+  <div class="gift-info">
     <div class="Gift-info-header">
-    {{#if gift.isFavorite}}
+    {{#if this.isFavorite}}
     <p><i class="fas fa-heart"></i></p>
     {{/if}}
-      <h1 class="gift-name">{{gift.name}}</h1>
-    {{#unless gift.brand}}
-      <p class="gift brand">by {{gift.brand}}</p>
+      <h1 class="gift-name">{{this.name}}</h1>
+    {{#unless this.brand}}
+      <p class="gift brand">by {{this.brand}}</p>
     {{/unless}}
-    {{#unless gift.price}}
-      <h4 class="gift-price">{{gift.price}} {{gift.currency}}</h4>
+    {{#unless this.price}}
+      <h4 class="gift-price">{{this.price}} {{this.currency}}</h4>
     {{/unless}}
-    {{#unless gift.comment}}
-      <p class="comment">Comment: {{gift.comment}}</p>
+    {{#unless this.comment}}
+      <p class="comment">Comment: {{this.comment}}</p>
     {{/unless}}
