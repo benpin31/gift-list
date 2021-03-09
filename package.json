@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www -e .hbs,.js",
+    "start": "nodemon -L ./bin/www -e .hbs,.js",
     "seed": "node bin/seed/seed.gift.js; node bin/seed/seed.list.js; node bin/seed/seed.event.js; node bin/seed/seed.user.js"
   },
   "dependencies": {
