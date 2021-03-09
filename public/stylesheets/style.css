@@ -1,4 +1,6 @@
-* {
+
+  
+  * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -10,6 +12,7 @@ body {
 
 a {
   color: black;
+  text-decoration: none;
 }
 
 
@@ -26,13 +29,14 @@ a {
 .container {
   margin:10px;
   padding-top:50px;
+  
 }
 
 #page_title {
   align-self: center;
 }
 
-.btn {
+/* .btn {
   height: 120px;
   width: 500px;
   background-color: #2BBFFF;
@@ -40,7 +44,7 @@ a {
   text-decoration: none;
   color: white;
   border-radius: 5px;
-}
+} */
 
 .header {
   padding: 20px;
@@ -121,4 +125,65 @@ a {
 .nav--open .nav__overlay {
   visibility: visible;
   opacity: 1;
+}
+
+.list-container{
+  border: 1px solid rgb(194, 194, 194) ;
+  display: flex ;
+  justify-content: space-between;
+  padding: 10px ;
+  margin: 10px ;
+  border-radius: 3px;
+  color: rgb(26, 26, 26);
+}
+
+.list-container:hover {
+  background-color: rgb(247, 247, 247);
+  cursor: pointer;
+}
+
+.red {
+  color: rgb(255, 122, 122);
+}
+
+.gift_list{
+  border: 1px solid rgb(194, 194, 194) ;
+  padding-top: 10px;
+  border-radius: 3px;
+  color: rgb(26, 26, 26);
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+.gift_image {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+}
+
+.state {
+  display: flex;
+  align-items: flex-end;
+}
+
+.bought {
+  background-color: rgb(132, 206, 132);
+  color: #eeeeee;
+}
+
+.not-bought {
+  background-color: rgb(142, 216, 226);
+  color: black;
+}
+
+.create_list {
+  display: fixed;
+  position: fixed;
+  background-color: #3967ff;
+  padding: 10px ;
+  margin: 10px ;
+  border-radius: 3px;
+  bottom: 0px;
+  text-align: center;
 }

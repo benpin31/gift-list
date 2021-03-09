@@ -12,7 +12,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const giftRouter = require("./routes/gift.routes");
 const listRouter = require("./routes/list");
-const eventRouter = require("./routes/event");
+var eventRouter = require('./routes/event');
 
 const app = express();
 
@@ -30,11 +30,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/events", eventRouter);
-app.use("/users", usersRouter);
-app.use("/lists", listRouter);
-app.use("/gifts", giftRouter);
+app.use('/', indexRouter);
+app.use('/events', eventRouter);
+app.use('/users', usersRouter);
+app.use('/lists', listRouter);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -17,7 +17,7 @@ const eventRouter = require("./routes/event");
 const app = express();
 
 // local variable
-app.locals.userId = "6047474bb73fea77d582096f";
+app.locals.userId = "604778ed2a153a2db994fda2";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
