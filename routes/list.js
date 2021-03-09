@@ -23,8 +23,8 @@ router.post("/create", async function (req, res, next) {
     const user = await userModel.findById(req.app.locals.userId);
     const userLists = user.lists;
     userLists.push(newList._id);
-    console.log(newList._id);
-    await userModel.findOneAndUpdate(req.params.id, { lists: userLists });
+    console.log(user, req.app.locals.userId)
+    await userModel.findByIdAndUpdate(req.app.locals.userId, { lists: userLists });
     res.redirect("/lists");
   } catch (err) {
     next(err);
@@ -34,7 +34,6 @@ router.post("/create", async function (req, res, next) {
 router.post("/addGift/:id", async function (req, res, next) {
   // id is the list id
   try {
-    console.log(req.body);
     await listModel
       .findById(req.params.id)
       .update({ $addToSet: { gifts: req.body.gifts } }); //Pour dédoublonner
@@ -47,8 +46,7 @@ router.post("/addGift/:id", async function (req, res, next) {
 router.get("/delete/:id", async function (req, res, next) {
   // id is the list id
   try {
-    console.log(req.params.id);
-    await listModel.findOneAndRemove(req.params.id);
+    const result = await listModel.findByIdAndRemove(req.params.id);
     res.redirect("/lists");
   } catch (err) {
     next(err);
@@ -81,7 +79,6 @@ router.get("/", getUserGifts, async function (req, res, next) {
 
 router.get("/:id", getUserGifts, async function (req, res, next) {
   // id is the list id
-  console.log(req.userGifts)
   try {
     const list = await listModel.findById(req.params.id).populate("gifts");
     list.gifts.forEach((gift) => (gift.isTaken = gift.priceRemainder === 0));

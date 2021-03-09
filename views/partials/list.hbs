@@ -1,17 +1,16 @@
 {{this.name}}
 {{#each this.gifts}}
-<div class="gift-in-list">
-    <div >
-        <ul>
-            <li>{{this.name}}</li>
-            <li>{{this.price}}</li>
-        </ul>
-    </div> 
+<div class="gift_list">
+    <img class="gift_image" src="{{this.picture}}" alt="">
     <div>
+        <h4 class="gift_name">{{this.name}}</h4>
+        <h2 class="gift_price">{{this.price}}€</h2>
+    </div>
+        <div class="state">
         {{#if this.isTaken}}
-            Has been bought
+            <i class="fas fa-store-alt bought"></i>User bought it
         {{else}}
-            Nobody has bought it
+            <i class="fas fa-store-alt not-bought"></i>Not bought yet
         {{/if}}
     </div>
 </div>

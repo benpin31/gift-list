@@ -16,8 +16,13 @@ const userModel = require("./../model/user")
 router.get("/", async (req, res,next) => {
     
     try {
-        const event = await eventModel.find();
-        res.render("events", {event} );
+      const user = await userModel
+          .findById(req.app.locals.userId)
+          .populate("events");
+      console.log(user)
+      res.render("events", { events: user.events });
+        // const event = await eventModel.find();
+        // res.render("events", {event} );
     } catch (err) {
       next(err);
     }
@@ -42,8 +47,12 @@ router.get("/create", async (req, res, next) => {
 
 router.post("/create", async (req, res, next) => {
   try {
-    const {name, date, description, lists} = req.body
-    await eventModel.create({name, date, description, lists})
+    const {name, date, description, lists} = req.body ;
+    const newEvent = await eventModel.create({name, date, description, lists}) ;
+    const user = await userModel.findById(req.app.locals.userId);
+    const userEvents = user.events;
+    userEvents.push(newEvent._id);
+    await userModel.findByIdAndUpdate(req.app.locals.userId, { events: userEvents });
     res.redirect("/events")
 
   } catch(err) {
@@ -58,7 +67,7 @@ router.post("/create", async (req, res, next) => {
 
 router.get("/delete/:id", async (req, res, next) => {
     try {
-      await eventModel.findOneAndRemove(req.params.id);
+      await eventModel.findByIdAndRemove(req.params.id);
       res.redirect("/events");
     } catch (err) {
       next(err);
@@ -100,7 +109,7 @@ router.post('/addToUser/:id', async function(req, res, next) {
   // id is the list id
   try {
     await userModel.find({email: req.body.email}) 
-      .update({$addToSet: { lists: req.params.id}}) ;
+      .update({$addToSet: { events: req.params.id}}) ;
     res.redirect("/events/"+req.params.id)
   } catch(err) {
     next(err)
