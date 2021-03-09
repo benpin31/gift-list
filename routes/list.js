@@ -23,7 +23,7 @@ router.post('/create', async function(req, res, next) {
     userLists.push(newList._id) ;
     console.log(newList._id) ;
     await userModel.findOneAndUpdate(req.params.id, {lists:userLists })
-    res.redirect("/list") ;
+    res.redirect("/lists") ;
   } catch(err) {
     next(err)
   }
@@ -35,7 +35,7 @@ router.post('/addGift/:id', async function(req, res, next) {
     console.log(req.body) ;
     await listModel.findById(req.params.id)
     .update({$addToSet: { gifts: req.body.gifts}})
-    res.redirect("/list/"+req.params.id)
+    res.redirect("/lists/"+req.params.id)
   } catch(err) {
     next(err)
   }
@@ -44,8 +44,9 @@ router.post('/addGift/:id', async function(req, res, next) {
 router.get('/delete/:id', async function(req, res, next) {
   // id is the list id
   try {
+    console.log(req.params.id)
     await listModel.findOneAndRemove(req.params.id) ;
-    res.redirect("/list")
+    res.redirect("/lists")
   } catch(err) {
     next(err)
   }
@@ -59,7 +60,7 @@ router.post('/addToUser/:id', async function(req, res, next) {
 
     await userModel.find({email: req.body.email}) 
       .update({$addToSet: { lists: req.params.id}}) ;
-    res.redirect("/list/"+req.params.id)
+    res.redirect("/lists/"+req.params.id)
   } catch(err) {
     next(err)
   }
