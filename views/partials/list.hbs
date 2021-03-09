@@ -1,5 +1,6 @@
-{{this.name}}
-{{#each this.gifts}}
+{{name}}
+{{eventId}}
+{{#each gifts}}
 <div class="gift_list">
     <img class="gift_image" src="{{this.picture}}" alt="">
     <div>
@@ -8,10 +9,10 @@
     </div>
         <div class="state">
         {{#if this.isAvailable}}
-            <i class="fas fa-store-alt not-bought"></i> <a href="/gifts/book/{{this._id}}">Not bought yet</a> 
+            <i class="fas fa-store-alt not-bought"></i> <a href="/events/{{../eventId}}/book/{{this._id}}">Not bought yet</a> 
         {{else}}
             <i class="fas fa-store-alt bought"></i>User bought it
         {{/if}}
-    </div>
+        </div>
 </div>
 {{/each}}

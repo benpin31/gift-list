@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const eventModel = require('./../model/event')
 const listsModel = require('./../model/list.js')
-const giftsModel = require('./../model/gift.js')
+const GiftModel = require("./../model/gift"); //Path to GiftModel
 const getUserGifts = require("./../middleware/userGift");
 const userModel = require("./../model/user")
+const uploader = require("./../config/cloudinary");
+
 
 
 ///////////////////
@@ -116,9 +118,43 @@ router.post('/addToUser/:id', async function(req, res, next) {
   }
 })
 
+//////////////////////////////
+// book gift
+//////////////////////////////
+
+//* GET - book a gift
+router.get("/:idEvent/book/:idGift", async (req, res, next) => {
+  try {
+    const giftToBook = await GiftModel.findById(req.params.idGift);
+    res.render("giftBook", { gift: giftToBook , eventId: req.params.idEvent});
+  } catch (error) {
+    next(error);
+  }
+});
+
+//* POST - book a given gift
+router.post("/:idEvent/book/:idGift", uploader.single("cover"), async (req, res, next) => {
+  const { name, message } = req.body;
+  const gifters = [{ name, message }];
+  try {
+    const updatedGift = await GiftModel.findByIdAndUpdate(
+      req.params.idGift,
+      { isAvailable: false, gifters },
+      { new: true }
+    );
+    console.log(updatedGift)
+    res.redirect("/events/"+req.params.idEvent);
+  } catch (error) {
+    next(error);
+  }
+});
+
 /////////////////////////
 // Specific event
 /////////////////////////
+
+
+
 
 router.get("/:id", getUserGifts, async (req, res, next) => {
   try {

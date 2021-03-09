@@ -105,31 +105,15 @@ router.post("/update/:id", uploader.single("cover"), async (req, res, next) => {
   }
 });
 
-//* GET - book a gift
-router.get("/book/:id", async (req, res, next) => {
-  try {
-    const giftToBook = await GiftModel.findById(req.params.id);
-    res.render("giftBook", { gift: giftToBook });
-  } catch (error) {
-    next(error);
-  }
-});
 
-//* POST - book a given gift
-router.post("/book/:id", uploader.single("cover"), async (req, res, next) => {
-  const { name, message } = req.body;
-  const gifters = [{ name, message }];
-  try {
-    const updatedGift = await GiftModel.findByIdAndUpdate(
-      req.params.id,
-      { isAvailable: false, gifters },
-      { new: true }
-    );
-    console.log(updatedGift)
-    res.redirect("/lists");
-  } catch (error) {
-    next(error);
-  }
-});
+
+// router.get("/giftGifter/:id", async (req, res, next) => {
+//   try {
+//     const giftToBook = await GiftModel.findById(req.params.id);
+//     res.render("giftGifter", { gift: giftToBook });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;
