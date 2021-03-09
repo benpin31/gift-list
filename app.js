@@ -10,8 +10,12 @@ var logger = require("morgan");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const giftRouter = require("./routes/gift.routes");
+const listRouter = require("./routes/list");
 
 var app = express();
+
+// local variable
+app.locals.userId = "6046378944cd3a28072f8dcc";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -26,6 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/gift", giftRouter);
+app.use("/list", listRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
