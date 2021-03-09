@@ -1,8 +1,42 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: black;
+}
+
+
+.navbar {
+  padding: 10px;
+  height: 50px;
+  background-color: #2BBFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+  flex-wrap: wrap;
+}
+
+.container {
+  margin:10px
+}
+
+#page_title {
+  align-self: center;
+}
+
+.btn {
+  height: 120px;
+  width: 500px;
+  background-color: #2BBFFF;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
 }

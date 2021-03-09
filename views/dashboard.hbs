@@ -1,3 +1,20 @@
 
+<nav class="navbar">
+<a href="#"><h2><i class="fas fa-bars"></i></h2></a>
+<h2 class="page_title">Dashboard</h2>
+</nav>
 
-<h1>Dashboard</h1>
+<div class="container">
+    {{#each event}}
+    <h1>{{this.name}}</h1>
+    <h2>{{this.date}}</h2>
+{{/each}}
+    </div>
+<br>
+<br>
+<br>
+
+<a href="/createEvent" class="btn">Create a new event</a>
+
+</div>
+
