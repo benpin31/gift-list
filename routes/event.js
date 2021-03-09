@@ -128,6 +128,7 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
         path: "gifts",
       },
     });
+    console.log("event" , event.lists)
     res.render("event", {event, lists: req.userLists}) ;
   } catch(err) {
     next(err)

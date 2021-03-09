@@ -7,10 +7,10 @@
         <h2 class="gift_price">{{this.price}}€</h2>
     </div>
         <div class="state">
-        {{#if this.isTaken}}
-            <i class="fas fa-store-alt bought"></i>User bought it
+        {{#if this.isAvailable}}
+            <i class="fas fa-store-alt not-bought"></i> <a href="/gifts/book/{{this._id}}">Not bought yet</a> 
         {{else}}
-            <i class="fas fa-store-alt not-bought"></i>Not bought yet
+            <i class="fas fa-store-alt bought"></i>User bought it
         {{/if}}
     </div>
 </div>

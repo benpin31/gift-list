@@ -81,7 +81,7 @@ router.get("/:id", getUserGifts, async function (req, res, next) {
   // id is the list id
   try {
     const list = await listModel.findById(req.params.id).populate("gifts");
-    list.gifts.forEach((gift) => (gift.isTaken = gift.priceRemainder === 0));
+    // list.gifts.forEach((gift) => (gift.isTaken = gift.isAvailable));
     res.render("list", { list, gifts: req.userGifts });
   } catch (err) {
     next(err);
