@@ -9,7 +9,7 @@ const giftSchema = new Schema({
   },
   brand: String,
   picture: String,
-  urls: [String],
+  url: String,
   price: Number,
   currency: {
     type: String,
@@ -18,6 +18,10 @@ const giftSchema = new Schema({
   priceRemainder: {
     type: Number,
     default: 0,
+  },
+  isAvailable: {
+    type: Boolean,
+    default: true,
   },
   comment: String,
   isFavorite: {

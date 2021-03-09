@@ -12,12 +12,12 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const giftRouter = require("./routes/gift.routes");
 const listRouter = require("./routes/list");
-var eventRouter = require('./routes/event');
+const eventRouter = require("./routes/event");
 
 const app = express();
 
 // local variable
-app.locals.userId = "6047648d0662d426f6243238";
+app.locals.userId = "604778ed2a153a2db994fda2";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -30,13 +30,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
-app.use('/events', eventRouter);
-app.use('/users', usersRouter);
-app.use('/lists', listRouter);
-
-
-
+app.use("/", indexRouter);
+app.use("/events", eventRouter);
+app.use("/users", usersRouter);
+app.use("/lists", listRouter);
+app.use("/gifts", giftRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
