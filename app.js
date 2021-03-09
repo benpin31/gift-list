@@ -12,6 +12,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const giftRouter = require("./routes/gift.routes");
 const listRouter = require("./routes/list");
+var eventRouter = require('./routes/event');
 
 const app = express();
 
@@ -29,11 +30,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/gift", giftRouter);
-app.use("/lists", listRouter);
-app.use('/dashboard', eventRouter);
+app.use('/', indexRouter);
+app.use('/events', eventRouter);
+app.use('/users', usersRouter);
+app.use('/lists', listRouter);
 
 
 

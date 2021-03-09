@@ -11,12 +11,13 @@ var eventModel = require('./../model/event')
 router.get("/", async (req, res,next) => {
     
     try {
-        const event = eventModel.find().populate("gifts");
-        res.render("dashboard", {event} );
+        const event = await eventModel.find();
+        res.render("events", {event} );
     } catch (err) {
       next(err);
     }
-  });
+
+});
     
 ///////////////////////////
 // GET - create a new event
@@ -24,8 +25,8 @@ router.get("/", async (req, res,next) => {
 
 router.get("/create", async (req, res, next) => {
   try {
-    await eventModel.create(req.body);
-    res.redirect("dashboard/createEvent");
+    // await eventModel.create(req.body);
+    res.render("createEvent");
   } catch (err) {
     next(err);
   }

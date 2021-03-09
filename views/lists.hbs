@@ -1,6 +1,12 @@
 <div id="user-lists">
     {{#each lists}} 
-    <a href="/list/{{this._id}}">{{this.name}}</a>
+    <div class="list-container">
+        <a href="/lists/{{this._id}}">{{this.name}}</a>
+        <a href="/lists/delete/{{this._id}}">Delete the list</a>
+    </div>
     {{/each}}
-    <a href="/list/create">Create new list</a>
+    <div class="list-container">
+        <a href="/lists/create">Create new list</a>
+    </div>
+
 </div>
