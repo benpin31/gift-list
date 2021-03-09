@@ -77,8 +77,8 @@ router.get("/update/:id", async (req, res, next) => {
     const giftToUpdate = await GiftModel.findById(req.params.id);
     console.log("giftToUpdate", giftToUpdate);
     res.render("giftUpdate", giftToUpdate);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -91,8 +91,12 @@ router.post("/update/:id", uploader.single("cover"), async (req, res, next) => {
     giftToUpdate.picture = undefined;
   }
   try {
-    await GiftModel.findByIdAndUpdate(req.params.id, giftToUpdate);
-    res.redirect("/");
+    const updatedGift = await GiftModel.findByIdAndUpdate(
+      req.params.id,
+      giftToUpdate,
+      { new: true }
+    );
+    res.redirect("/gifts/" + updatedGift.id);
   } catch (error) {
     next(error);
   }
