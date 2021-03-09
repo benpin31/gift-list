@@ -10,8 +10,8 @@ module.exports = async function getUserGifts(req, res, next) {
     });
     const lists = user.lists;
     let gifts = [];
-    lists.forEach((list) => (gifts = gifts.concat(list.gifts)));
-    req.userGifts = [...new Set(gifts)];
+    lists.forEach((list) => (gifts = gifts.concat(list.gifts))); //Concaténation de toutes les listes de cadeaux
+    req.userGifts = [...new Set(gifts)]; //Dédoublonnage des cadeaux
     next();
   } catch (err) {
     next(err);

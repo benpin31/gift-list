@@ -12,12 +12,12 @@ const gifts = [
     brand: "Sony",
     picture:
       "https://www.playstation.https://blog.fr.playstation.com/tachyon/sites/10/2020/11/Featured-Image-PS5-preorder-update.jpg?resize=1088,612&crop_strategy=smart/fr-fr/ps5/",
-    urls: [
+    url:
       "https://fr.shopping.rakuten.com/offer/buy/5478214186/console-sony-ps5-edition-digital.html?bbaid=7729910695&t=180175&ptnrid=s_dc|pcrid|53440822523|pkw||pmt||ptaid|pla-982069145471|pgrid|14467372643|&gclid=Cj0KCQiAs5eCBhCBARIsAEhk4r55oDsi-Sou7IbkAPma1SWRqOgbEeflq8pZRqLyNA4P8J5FXD7oGkIaAjNhEALw_wcB",
-    ],
     price: 500,
     comment: "I really really want it <3",
     isFavorite: true,
+    isAvailable: true,
     gifters: [
       {
         name: "Papa et Maman",
@@ -33,12 +33,12 @@ const gifts = [
     brand: "Hoka One One",
     picture:
       "https://www.lepape.com/media/catalog/product/cache/4162369c3254ba374995714f35d9d344/3/0/30108022-CCYB_0_1.jpg",
-    urls: [
-      "https://www.lepape.com/hoka-one-one-rapa-nui-trail-jaune-bleu-homme",
-    ],
+    url: "https://www.lepape.com/hoka-one-one-rapa-nui-trail-jaune-bleu-homme",
+
     price: 130,
     comment: "Colour does not matter",
     isFavorite: false,
+    isAvailable: true,
     gifters: [
       {
         name: "Beau-papa & belle-maman",
@@ -51,12 +51,12 @@ const gifts = [
     brand: "Claudie PIERLOT",
     picture:
       "https://fr.claudiepierlot.com/dw/image/v2/BCND_PRD/on/demandware.static/-/Sites-claudie-catalog-master-H13/default/dw0c1fb109/images/preAH15/Claudie_CFPRO01122-K009_H_2.jpg?sw=800&sh=1173&cx=0&cy=0&cw=1255&ch=1840",
-    urls: [
+    url:
       "https://fr.claudiepierlot.com/fr/categories/robes-2/221rosemary/CFPRO01122.html?dwvar_CFPRO01122_color=K009#start=1",
-    ],
     price: 500,
     comment: "Size 34",
     isFavorite: true,
+    isAvailable: true,
     gifters: [
       {
         name: "Papa et Maman",

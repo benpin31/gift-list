@@ -1,0 +1,30 @@
+<section class="newGift">
+<h1>Create a gift</h1>
+<form action="/gifts/update/{{_id}}" method="post" class="createGift" enctype="multipart/form-data">
+
+<label for="name">Name</label>
+<input class="input" type="text" id="name" name="name" value="{{name}}">
+
+<label for="brand">Brand</label>
+<input class="input" type="text" id="brand" name="brand" value="{{brand}}">
+
+<label for="picture">Image of the gift</label>
+<input class="input" type="file" id="picture" name="picture" value="{{picture}}">
+<img src="{{picture}}">
+
+<label for="url">Url</label>
+<input class="input" type="text" id="url" name="urls" value="{{url}}">
+
+<label for="description">Description or comment</label>
+<textarea name="description" id="description" cols="30" rows="10" value="{{description}}"></textarea>
+
+<label for="price">Price</label>
+<input class="input" type="number" id="price" name="price" value="{{price}}">
+
+<label for="isFavorite"></label>
+<input class="input" type="checkbox" id="isFavorite" name="isFavorite" value="{{isFavorite}}">
+
+<button class="button-primary add-gift-btn">Modify gift</button>
+
+</form>
+</section>
