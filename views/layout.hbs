@@ -4,9 +4,32 @@
     <title>{{title}}</title>
     <link rel="stylesheet" href="/stylesheets/lists-css.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+
+      window.addEventListener("load", () => {
+    document.body.classList.remove("preload");
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector(".nav");
+
+    document.querySelector("#btnNav").addEventListener("click", () => {
+        nav.classList.add("nav--open");
+    });
+
+    document.querySelector(".nav__overlay").addEventListener("click", () => {
+        nav.classList.remove("nav--open");
+    });
+});
+    </script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
   </head>
   <body>
+    {{>navbar}}
+    <div class="container">
     {{{body}}}
+    </div>
   </body>
 </html>
