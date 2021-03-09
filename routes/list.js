@@ -58,15 +58,11 @@ router.get("/delete/:id", async function (req, res, next) {
 router.post("/addToUser/:id", async function (req, res, next) {
   // id is the list id
   try {
-    console.log(req.body.email);
-    console.log(req.params.id);
-
-    await userModel
-      .find({ email: req.body.email })
-      .update({ $addToSet: { lists: req.params.id } });
-    res.redirect("/lists/" + req.params.id);
-  } catch (err) {
-    next(err);
+    await userModel.find({email: req.body.email}) 
+      .update({$addToSet: { lists: req.params.id}}) ;
+    res.redirect("/lists/"+req.params.id)
+  } catch(err) {
+    next(err)
   }
 });
 
@@ -85,6 +81,7 @@ router.get("/", getUserGifts, async function (req, res, next) {
 
 router.get("/:id", getUserGifts, async function (req, res, next) {
   // id is the list id
+  console.log(req.userGifts)
   try {
     const list = await listModel.findById(req.params.id).populate("gifts");
     list.gifts.forEach((gift) => (gift.isTaken = gift.priceRemainder === 0));

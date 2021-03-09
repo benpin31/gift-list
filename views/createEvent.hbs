@@ -1,1 +1,14 @@
-<h1>Create Event</h1>
+<form action="/events/create" method="post">
+    <label for="event-create-name" name="name">Name</label>
+    <input type="text" name="name" id="event-create-name">
+    <label for="event-create-description" name="description">Description</label>
+    <input type="text" name="description" id="event-create-description">
+    <label for="event-create-date" name="date">Date</label>
+    <input type="date" name="date" id="event-create-date">
+    <select name="lists" id="event-add-list" multiple>
+    {{#each lists}}
+        <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+    </select>
+    <button>Create new event</button>
+</form>

@@ -4,6 +4,7 @@ require("dotenv").config();
 require("./../../config/mongo");
 const EventModel = require("./../../model/event");
 const GiftModel = require("./../../model/gift");
+const ListModel = require("./../../model/list");
 
 //* Define data sample
 async function create() {
@@ -12,19 +13,26 @@ async function create() {
       name: "Christmas",
       date: "2021-12-25",
       description: "oh oh oh !!!!",
-      gifts: await GiftModel.find({
-        $or: [
-          { name: "Robe midi" },
-          { name: "RAPA NUI TRAIL" },
-          { name: "PS5" },
-        ],
-      }),
+      // gifts: await GiftModel.find({
+      //   $or: [
+      //     { name: "Robe midi" },
+      //     { name: "RAPA NUI TRAIL" },
+      //     { name: "PS5" },
+      //   ],
+      // }),
+      lists: await ListModel.find({
+          $or: [
+            {name: "Mélanie"}, 
+            {name: "Charles"}, 
+            {name: "Félix"}, 
+            {name: "Eliott"}]
+        })
     },
     {
       name: "Benjamin Birthday",
       date: "2021-05-14",
       description: "I wan't a ps5",
-      gifts: await GiftModel.find({ name: "PS5" }),
+      lists: await ListModel.find({ name: "Benjamin" }),
     },
   ];
   return events;

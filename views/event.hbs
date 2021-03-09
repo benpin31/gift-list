@@ -1,0 +1,24 @@
+<div class="list">
+    {{event.name}}
+    {{#each event.lists}}
+        {{> list this}}
+    {{/each}}
+
+    <form action="/events/addlist/{{event._id}}" method="post">
+        <label for="list-add-gifts"></label>
+        <select name="list" id="list-add-gifts" multiple>
+        {{#each lists}}
+            <option value="{{this._id}}">{{this.name}}</option>
+        {{/each}}
+        </select>   
+        <button>Add an event</button>
+    </form>
+
+    <form action="/events/addToUser/{{event._id}}" method="post">
+        <label for="list-add-to-user"></label>
+        <input type="email" name="email" id="list-add-to-user">
+        <button>Add to the user</button>
+    </form>
+
+    <a href="/lists/delete/{{list._id}}">Delete the list</a> --}}
+</div>
