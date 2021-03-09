@@ -12,7 +12,7 @@ router.get("/", async (req, res,next) => {
     
     try {
         const event = await eventModel.find();
-        res.render("dashboard", {event} );
+        res.render("events", {event} );
     } catch (err) {
       next(err);
     }
