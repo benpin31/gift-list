@@ -1,5 +1,5 @@
 <div class="list">
-    {{list.name}}
+    {{!-- {{list.name}}
     {{#each list.gifts}}
     <div class="gift-in-list">
         <div >
@@ -16,7 +16,8 @@
             {{/if}}
         </div>
     </div>
-    {{/each}}
+    {{/each}} --}}
+    {{> list list}}
 
     <form action="/lists/addGift/{{list._id}}" method="post">
         <label for="list-add-gifts"></label>

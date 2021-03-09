@@ -1,0 +1,18 @@
+{{this.name}}
+{{#each this.gifts}}
+<div class="gift-in-list">
+    <div >
+        <ul>
+            <li>{{this.name}}</li>
+            <li>{{this.price}}</li>
+        </ul>
+    </div> 
+    <div>
+        {{#if this.isTaken}}
+            Has been bought
+        {{else}}
+            Nobody has bought it
+        {{/if}}
+    </div>
+</div>
+{{/each}}

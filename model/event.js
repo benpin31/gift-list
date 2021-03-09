@@ -14,12 +14,20 @@ const eventSchema = new Schema({
 
   description: String,
 
-  gifts: [
+  // gifts: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "gifts",
+  //   },
+  // ],
+
+  lists: [
     {
       type: Schema.Types.ObjectId,
-      ref: "gifts",
-    },
-  ],
+      ref: "lists"
+    }
+  ]
+
 });
 
 const EventModel = mongoose.model("events", eventSchema);

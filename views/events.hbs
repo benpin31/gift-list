@@ -1,11 +1,12 @@
-<div class="container">
-    {{#each event}}
-    <h1>{{this.name}}</h1>
-    <h2>{{this.date}}</h2>
-{{/each}}
+<div id="user-lists">
+    {{#each event}} 
+    <div class="list-container">
+        <a href="/events/{{this._id}}">{{this.name}}</a>
+        <a href="/events/delete/{{this._id}}">Delete the event</a>
     </div>
-<br>
-<br>
-<br>
+    {{/each}}
+    <div class="list-container">
+        <a href="/events/create">Create new event</a>
+    </div>
 
-<a href="/events/create" class="btn">Create a new event</a>
+</div>
