@@ -32,6 +32,12 @@ select {
   padding: 15px;
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+
 button {
   background-color:#3967ff;
   border: none;
@@ -241,13 +247,13 @@ button {
 
 .delete_list {
   color: white;
-  display: flex;
   position: fixed;
   background-color: rgb(255, 122, 122);
   padding: 10px ;
   margin: 10px ;
   border-radius: 3px;
   bottom: 0px;
+  right: 0px;
 }
 
 .list_title {
@@ -269,3 +275,13 @@ select {
   border-radius: 4px;
 }
 
+.create_gift {
+  color: white;
+  position: fixed;
+  background-color: #3967ff;
+  padding: 10px ;
+  margin: 10px ;
+  border-radius: 3px;
+  bottom: 0px;
+  left: 0px;
+}
