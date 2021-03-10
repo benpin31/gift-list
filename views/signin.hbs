@@ -1,5 +1,5 @@
 <form action="/signin" method="POST">
-
+<div class="create_list_form">
  <label for="email">Email:</label>
  <input type="text" name="email" placeholder="Your email" value="augustin.leman@gmail.com">
  
@@ -9,6 +9,11 @@
  {{#if errorMessage}}
  <div class="error-message">{{errorMessage}}</div>
  {{/if}}
- 
- <button>Log in</button>
+ <button class="btn_all_width">Log in</button>
+
+ <p>You don't have an account? <a href="/signup">Sign up here</a></p>
+
+
+
+</div>
 </form>

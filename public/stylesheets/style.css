@@ -1,5 +1,4 @@
 
-  
   * {
   padding: 0;
   margin: 0;
@@ -38,11 +37,6 @@ select {
 }
 
 
-button {
-  background-color:#3967ff;
-  border: none;
-  color: white;
-}
 .container {
   margin:10px;
   padding-top:50px;
@@ -223,6 +217,8 @@ button {
   border-radius: 0 3px 3px 0;
 }
 
+
+
 .add_gift {
   width: 100%;
   display: flex;
@@ -284,4 +280,20 @@ select {
   border-radius: 3px;
   bottom: 0px;
   left: 0px;
+}
+
+.btn_all_width {
+  width: 100%;
+  background-color:#3967ff;
+  border: none;
+  height: 47px;
+  border-radius: 3px;
+  color: white;
+  margin-top: 10px;
+}
+
+
+.container_header {
+  text-align: center;
+  padding:10px;
 }
