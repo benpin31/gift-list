@@ -2,7 +2,11 @@
     {{#each lists}} 
     <div class="list-container">
         <a href="/lists/{{this._id}}">{{this.name}}</a>
-        <i class="fas fa-trash-alt red"><a href="/lists/delete/{{this._id}}"></a></i>
+        <div id="event-crud">
+            <a href="/lists/update/{{this._id}}"><i class="fas fa-edit" style="color:blue"></i></a>
+            <a href="/lists/delete/{{this._id}}"><i class="fas fa-trash-alt red"></i></a>
+        </div>
+        {{!-- <i class="fas fa-trash-alt red"><a href="/lists/delete/{{this._id}}" class="crud-a"></a></i> --}}
         
     </div>
     {{/each}}

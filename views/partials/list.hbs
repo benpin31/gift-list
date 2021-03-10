@@ -1,5 +1,3 @@
-{{name}}
-{{eventId}}
 {{#each gifts}}
 <div class="gift_list">
     <img class="gift_image" src="{{this.picture}}" alt="">
@@ -11,7 +9,7 @@
         {{#if this.isAvailable}}
             <i class="fas fa-store-alt not-bought"></i> <a href="/events/{{../eventId}}/book/{{this._id}}">Not bought yet</a> 
         {{else}}
-            <i class="fas fa-store-alt bought"></i>User bought it
+            <i class="fas fa-store-alt bought"></i>{{#each this.gifters}}{{this.name}} {{/each}} bought it
         {{/if}}
         </div>
 </div>

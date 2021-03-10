@@ -172,9 +172,9 @@ button {
   margin-bottom: 10px;
 }
 
-.gift_list:hover {
+/* .gift_list:hover {
   cursor: pointer;
-}
+} */
 
 .gift_image {
   object-fit: cover;
@@ -284,4 +284,13 @@ select {
   border-radius: 3px;
   bottom: 0px;
   left: 0px;
+}
+
+.crud-a {
+  width: 10px;
+  height: 10px;
+  /* position: relative;
+  left: -10px; */
+  background-color: red;
+  display: inline-block;
 }

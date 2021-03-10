@@ -1,10 +1,10 @@
 <div class="list">
-    {{event.name}}
-    {{event._id}}
     {{#each event.lists}}
+        <h2>{{this.name}}</h2>
         {{> list name=this.name gifts=this.gifts eventId=../event._id}}
     {{/each}}
 
+    {{#if isConnected}} 
     <form action="/events/addlist/{{event._id}}" method="post">
         <label for="list-add-gifts"></label>
         <select name="list" id="list-add-gifts" multiple>
@@ -12,7 +12,7 @@
             <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
         </select>   
-        <button>Add an event</button>
+        <button>Add a list</button>
     </form>
 
     <form action="/events/addToUser/{{event._id}}" method="post">
@@ -22,4 +22,5 @@
     </form>
 
     <a href="/lists/delete/{{list._id}}">Delete the list</a> --}}
+    {{/if}}
 </div>
