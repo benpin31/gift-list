@@ -1,6 +1,8 @@
 require("dotenv").config();
 require("./config/mongo");
 require("./config/passport");
+const protectPrivateRoute = require("./middleware/protectRoute");
+
 
 // base dependencies
 const createError = require("http-errors");
@@ -26,7 +28,7 @@ const eventRouter = require("./routes/event");
 const authRouter = require("./routes/auth.routes");
 
 // local variable
-app.locals.userId = "60486d2923e12406f4514db2";
+// app.locals.userId = "6048a52cf21c450d65d915b5";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -66,8 +68,8 @@ app.use(flash());
 app.use("/", indexRouter);
 app.use("/events", eventRouter);
 app.use("/users", usersRouter);
-app.use("/lists", listRouter);
-app.use("/gifts", giftRouter);
+app.use("/lists", protectPrivateRoute, listRouter);
+app.use("/gifts", protectPrivateRoute, giftRouter);
 app.use("/", authRouter);
 
 // catch 404 and forward to error handler
