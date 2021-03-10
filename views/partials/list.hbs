@@ -1,17 +1,18 @@
-{{this.name}}
+<h2 class="list_title">{{this.name}}</h2>
 {{#each this.gifts}}
 <div class="gift_list">
     <img class="gift_image" src="{{this.picture}}" alt="">
     <div>
         <h4 class="gift_name">{{this.name}}</h4>
         <h2 class="gift_price">{{this.price}}€</h2>
-    </div>
-        <div class="state">
-        {{#if this.isTaken}}
-            <i class="fas fa-store-alt bought"></i>User bought it
+        <h5 class="state">
+            {{#if this.isTaken}}
+            <span class="bought">Augustin bought it</span>
         {{else}}
-            <i class="fas fa-store-alt not-bought"></i>Not bought yet
+            <span class="not-bought">Not bought yet</span>
         {{/if}}
+        </h5>
+        
     </div>
 </div>
 {{/each}}

@@ -21,20 +21,24 @@
     {{> list list}}
 
     <form action="/lists/addGift/{{list._id}}" method="post">
-        <label for="list-add-gifts"></label>
-        <select name="gifts" id="list-add-gifts" multiple>
-        {{#each gifts}}
-            <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-        </select>   
-        <button>Add a gift</button>
+        <div class="add_gift" >
+            <label for="list-add-gifts"></label>
+            <select name="gifts" id="list-add-gifts" multiple>
+            {{#each gifts}}
+                <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+            </select>   
+            <button>Add a gift</button>
+        </div>
     </form>
 
-    <form action="/lists/addToUser/{{list._id}}" method="post">
+    <form class="form_style" action="/lists/addToUser/{{list._id}}" method="post">
         <label for="list-add-to-user"></label>
-        <input type="email" name="email" id="list-add-to-user">
-        <button>Add to the user</button>
+        <input type="email" name="email" id="list-add-to-user" placeholder="Enter user's email to be invited">
+        <button><i class="fas fa-user-plus"></i></button>
     </form>
 
-    <a href="/lists/delete/{{list._id}}">Delete the list</a>
+    <div class="delete_list">
+        <a href="/lists/delete/{{list._id}}"> <i class="fas fa-trash-alt"></i> Delete the list</a>
+    </div>
 </div>
