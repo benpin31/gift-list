@@ -30,6 +30,7 @@ router.post("/signup", async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(newUser.password, bcryptSalt);
     newUser.password = hashedPassword;
     await UserModel.create(newUser);
+    console.log("req.login", req.login);
     res.render("signin", {
       msg: { status: "success", text: "Congrats ! You are now registered !" },
     });
@@ -38,6 +39,7 @@ router.post("/signup", async (req, res, next) => {
     for (field in err.errors) {
       errorMessage += err.errors[field].message + "\n";
     }
+
     res.render("signup", {
       msg: { status: "error", text: errorMessage },
     });
@@ -45,7 +47,9 @@ router.post("/signup", async (req, res, next) => {
 });
 
 //* GET signin
-router.get("/signin", (req, res, next) => res.render("signin"));
+router.get("/signin", (req, res, next) =>
+  res.render("signin", { errorMessage: req.flash("error") })
+);
 
 //* POST signin
 router.post(
@@ -56,7 +60,7 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/signin",
-    failureFlash: false,
+    failureFlash: true,
   })
 );
 
