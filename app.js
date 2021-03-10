@@ -1,22 +1,18 @@
 require("dotenv").config();
 require("./config/mongo");
 require("./config/passport");
+
 // base dependencies
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const hbs = require("hbs");
 // dependencies for authentication
-// const mongoose = require("mongoose");
 const session = require("express-session");
-//? const MongoStore = require("connect-mongo")(session); Deprecated ?
 const MongoStore = require("connect-mongo").default;
-const bcrypt = require("bcryptjs");
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
-const UserModel = require("./model/user");
 
 const app = express();
 
@@ -36,16 +32,23 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
+// initial config
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
 // session setup
 app.use(
   session({
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: false, // <== false if you don't want to save empty session object to the store
+    saveUninitialized: true, // <== false if you don't want to save empty session object to the store
     cookie: {
-      sameSite: "none",
-      httpOnly: true,
+      // sameSite: "none",
+      // httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24, // 24h * 60 min *60 s * 1000 ms === 1 day
     },
     // store: new MongoStore({
@@ -54,12 +57,10 @@ app.use(
   })
 );
 
-// initial config
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use((req, res, next) => {
+  console.log("req.session", req.session);
+  next();
+});
 
 // passport initialisation
 app.use(passport.initialize());

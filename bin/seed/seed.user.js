@@ -14,11 +14,9 @@ async function create() {
       name: "Mélanie",
       lastName: "Féron",
       email: "melanie@wanadoo.fr",
-      password: bcryptjs.hashSync("1234", 10),
+      password: bcrypt.hashSync("1234", 10),
       lists: await ListModel.find({
-        $and: [
-          { name: { $in: ["Mélanie", "Charles", "Félix", "Eliott"] } }
-        ],
+        $and: [{ name: { $in: ["Mélanie", "Charles", "Félix", "Eliott"] } }],
       }),
       events: await EventModel.find({ name: "Christmas" }),
     },
@@ -26,11 +24,9 @@ async function create() {
       name: "Charles",
       lastName: "Féron",
       email: "charles@wanadoo.fr",
-      password: bcryptjs.hashSync("12345", 10),
+      password: bcrypt.hashSync("12345", 10),
       lists: await ListModel.find({
-        $and: [
-          { name: { $in: ["Charles", "Félix", "Eliott"] } }
-        ],
+        $and: [{ name: { $in: ["Charles", "Félix", "Eliott"] } }],
       }),
       events: await EventModel.find({ name: "Christmas" }),
     },
@@ -38,7 +34,7 @@ async function create() {
       name: "Benjamin",
       lastName: "Pinard",
       email: "benji@gmail.com",
-      password: bcryptjs.hashSync("123456", 10),
+      password: bcrypt.hashSync("123456", 10),
       lists: await ListModel.find({
         $and: [{ name: "Benjamin" }],
       }),

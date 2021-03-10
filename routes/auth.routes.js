@@ -51,7 +51,6 @@ router.get("/signin", (req, res, next) => res.render("signin"));
 router.post(
   "/signin",
   (req, res, next) => {
-    console.log("ici");
     next();
   },
   passport.authenticate("local", {
