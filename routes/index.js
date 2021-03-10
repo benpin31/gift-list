@@ -1,12 +1,13 @@
 var express = require("express");
 var router = express.Router();
-const passport = require("passport");
+const protectPrivateRoute = require("./../middleware/protectRoute");
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  passport.authenticate("local", (error, user, info) => {
-    res.render("index");
-  })(req, res);
+router.get("/", protectPrivateRoute, function (req, res, next) {
+  // passport.authenticate("local", (error, user, info) => {
+    // console.log("-----------------", req.user.name)
+    res.render("index", {req});
+  // })(req, res);
 });
 
 module.exports = router;

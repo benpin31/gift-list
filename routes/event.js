@@ -18,20 +18,16 @@ const uploader = require("./../config/cloudinary");
 router.get("/", async (req, res,next) => {
     
     try {
+      // console.log("totototoottoo" , req.user)
       const user = await userModel
-          .findById(req.app.locals.userId)
+          .findById(req.user._id)
           .populate("events");
-      console.log(user)
       res.render("events", { events: user.events });
-        // const event = await eventModel.find();
-        // res.render("events", {event} );
     } catch (err) {
       next(err);
     }
 
 });
-
-router.get
     
 ///////////////////////////
 // GET - create a new event
@@ -51,10 +47,10 @@ router.post("/create", async (req, res, next) => {
   try {
     const {name, date, description, lists} = req.body ;
     const newEvent = await eventModel.create({name, date, description, lists}) ;
-    const user = await userModel.findById(req.app.locals.userId);
+    const user = await userModel.findById(req.user._id);
     const userEvents = user.events;
     userEvents.push(newEvent._id);
-    await userModel.findByIdAndUpdate(req.app.locals.userId, { events: userEvents });
+    await userModel.findByIdAndUpdate(req.user._id, { events: userEvents });
     res.redirect("/events")
 
   } catch(err) {
@@ -142,7 +138,6 @@ router.post("/:idEvent/book/:idGift", uploader.single("cover"), async (req, res,
       { isAvailable: false, gifters },
       { new: true }
     );
-    console.log(updatedGift)
     res.redirect("/events/"+req.params.idEvent);
   } catch (error) {
     next(error);
@@ -164,7 +159,6 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
         path: "gifts",
       },
     });
-    console.log("event" , event.lists)
     res.render("event", {event, lists: req.userLists}) ;
   } catch(err) {
     next(err)

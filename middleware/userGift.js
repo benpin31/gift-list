@@ -2,7 +2,7 @@ const userModel = require("./../model/user");
 
 module.exports = async function getUserGifts(req, res, next) {
   try {
-    const user = await userModel.findById(req.app.locals.userId).populate({
+    const user = await userModel.findById(req.user._id).populate({
       path: "lists",
       populate: {
         path: "gifts",
