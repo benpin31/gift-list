@@ -39,12 +39,7 @@ const gifts = [
     comment: "Colour does not matter",
     isFavorite: false,
     isAvailable: true,
-    gifters: [
-      {
-        name: "Beau-papa & belle-maman",
-        message: "On te met au défi de courrir 400 km dans l'année",
-      },
-    ],
+    gifters: [],
   },
   {
     name: "Robe midi",

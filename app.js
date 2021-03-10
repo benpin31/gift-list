@@ -1,40 +1,111 @@
 require("dotenv").config();
 require("./config/mongo");
 
+// base dependencies
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const hbs = require("hbs");
-
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const giftRouter = require("./routes/gift.routes");
-const listRouter = require("./routes/list");
-const eventRouter = require("./routes/event");
+// dependencies for authentication
+// const mongoose = require("mongoose");
+const session = require("express-session");
+//? const MongoStore = require("connect-mongo")(session); Deprecated ?
+const MongoStore = require("connect-mongo").default;
+const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const UserModel = require("./model/user");
 
 const app = express();
 
+// routes
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/auth.routes");
+const giftRouter = require("./routes/gift.routes");
+const listRouter = require("./routes/list");
+const eventRouter = require("./routes/event");
+const authRouter = require("./routes/auth.routes");
+
 // local variable
-app.locals.userId = "6047932c55a90c12ffb72ab3";
+app.locals.userId = "60479ea829d45116b19a6b3f";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 hbs.registerPartials(path.join(__dirname, "views/partials"));
 
+// session setup
+app.use(
+  session({
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false, // <== false if you don't want to save empty session object to the store
+    cookie: {
+      sameSite: "none",
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24, // 24h * 60 min *60 s * 1000 ms === 1 day
+    },
+    // store: new MongoStore({
+    //   mongooseConnection: mongoose.connection,
+    // }),
+  })
+);
+
+// Passport serializer
+passport.serializeUser((user, cb) => cb(null, user._id));
+// Passport deserializer
+passport.deserializeUser((id, cb) => {
+  User.findById(id)
+    .then((user) => cb(null, user))
+    .catch((err) => cb(err));
+});
+// Passport strategy
+passport.use(
+  new LocalStrategy(
+    { passReqToCallback: true },
+    {
+      usernameField: "email",
+      passwordField: "password", // by default
+    },
+    (email, password, done) => {
+      UserModel.findOne({ email })
+        .then((user) => {
+          if (!user) {
+            return done(null, false, { message: "Incorrect email" });
+          }
+
+          if (!bcrypt.compareSync(password, user.password)) {
+            return done(null, false, { message: "Incorrect password" });
+          }
+
+          done(null, user);
+        })
+        .catch((err) => done(err));
+    }
+  )
+);
+
+// initial config
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// passport initialisation
+app.use(passport.initialize());
+app.use(passport.session());
+
+// routers
 app.use("/", indexRouter);
 app.use("/events", eventRouter);
 app.use("/users", usersRouter);
 app.use("/lists", listRouter);
 app.use("/gifts", giftRouter);
+app.use("/", authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
