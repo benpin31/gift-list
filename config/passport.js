@@ -16,7 +16,6 @@ passport.use(
   new LocalStrategy(
     {
       usernameField: "email",
-
       passwordField: "password", // by default
     },
     (email, password, done) => {
