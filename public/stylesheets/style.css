@@ -14,22 +14,38 @@ a {
   color: black;
   text-decoration: none;
 }
+input {
+  border: 1px solid rgb(194, 194, 194) ;
+  padding: 15px;
+  border-radius: 3px;
+}
+
+textarea {
+  border: 1px solid rgb(194, 194, 194) ;
+  padding: 15px;
+  border-radius: 3px;
+}
 
 
-/* .navbar {
-  padding: 10px;
-  height: 100px;
-  background-color: #2BBFFF;
+select {
+  border: 1px solid rgb(194, 194, 194) ;
+  padding: 15px;
+}
+
+.flex {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between ;
-  flex-wrap: wrap;
-} */
+  flex-direction: column;
+}
 
+
+button {
+  background-color:#3967ff;
+  border: none;
+  color: white;
+}
 .container {
   margin:10px;
   padding-top:50px;
-  
 }
 
 #page_title {
@@ -148,12 +164,16 @@ a {
 
 .gift_list{
   border: 1px solid rgb(194, 194, 194) ;
-  padding-top: 10px;
-  border-radius: 3px;
+
   color: rgb(26, 26, 26);
   list-style: none;
   display: flex;
   flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.gift_list:hover {
+  cursor: pointer;
 }
 
 .gift_image {
@@ -162,19 +182,20 @@ a {
   width: 150px;
 }
 
-.state {
-  display: flex;
-  align-items: flex-end;
-}
 
 .bought {
+  padding:2px;
   background-color: rgb(132, 206, 132);
-  color: #eeeeee;
+  color: #ffffff;
+  width: fit-content+2px;
+  border-radius: 2px;
 }
 
 .not-bought {
   background-color: rgb(142, 216, 226);
   color: black;
+  width: fit-content+2px;
+  border-radius: 2px;
 }
 
 .create_list {
@@ -186,4 +207,81 @@ a {
   border-radius: 3px;
   bottom: 0px;
   text-align: center;
+}
+
+
+.add_gift select {
+  width: 80%;
+  border-radius: 3px 0 0 3px;
+  color: rgb(26, 26, 26);
+  padding: 5px;
+}
+
+.add_gift button {
+  width: 100px;
+  border: none;
+  border-radius: 0 3px 3px 0;
+}
+
+.add_gift {
+  width: 100%;
+  display: flex;
+}
+
+
+.form_style {
+  padding-top:10px;
+  float: left;
+}
+
+.form_style input {
+  width: 420px;
+  height: 50px;
+}
+
+.form_style button {
+  background-color:#3967ff;
+  width: 50px;
+  height: 50px;
+}
+
+.delete_list {
+  color: white;
+  position: fixed;
+  background-color: rgb(255, 122, 122);
+  padding: 10px ;
+  margin: 10px ;
+  border-radius: 3px;
+  bottom: 0px;
+  right: 0px;
+}
+
+.list_title {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.create_list_form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+select {
+  width: 100%;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+
+.create_gift {
+  color: white;
+  position: fixed;
+  background-color: #3967ff;
+  padding: 10px ;
+  margin: 10px ;
+  border-radius: 3px;
+  bottom: 0px;
+  left: 0px;
 }
