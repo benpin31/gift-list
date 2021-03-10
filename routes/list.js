@@ -23,8 +23,9 @@ router.post("/create", async function (req, res, next) {
     const user = await userModel.findById(req.app.locals.userId);
     const userLists = user.lists;
     userLists.push(newList._id);
-    console.log(user, req.app.locals.userId)
-    await userModel.findByIdAndUpdate(req.app.locals.userId, { lists: userLists });
+    await userModel.findByIdAndUpdate(req.app.locals.userId, {
+      lists: userLists,
+    });
     res.redirect("/lists");
   } catch (err) {
     next(err);
@@ -56,11 +57,12 @@ router.get("/delete/:id", async function (req, res, next) {
 router.post("/addToUser/:id", async function (req, res, next) {
   // id is the list id
   try {
-    await userModel.find({email: req.body.email}) 
-      .update({$addToSet: { lists: req.params.id}}) ;
-    res.redirect("/lists/"+req.params.id)
-  } catch(err) {
-    next(err)
+    await userModel
+      .find({ email: req.body.email })
+      .update({ $addToSet: { lists: req.params.id } });
+    res.redirect("/lists/" + req.params.id);
+  } catch (err) {
+    next(err);
   }
 });
 

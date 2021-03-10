@@ -5,7 +5,7 @@ const passport = require("passport");
 /* GET home page. */
 router.get("/", function (req, res, next) {
   passport.authenticate("local", (error, user, info) => {
-    res.render("index");
+    res.render("index", { user: req.user });
   })(req, res);
 });
 
