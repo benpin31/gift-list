@@ -1,13 +1,11 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const eventModel = require('./../model/event')
-const listsModel = require('./../model/list.js')
+const eventModel = require("./../model/event");
+const listsModel = require("./../model/list.js");
 const GiftModel = require("./../model/gift"); //Path to GiftModel
 const getUserGifts = require("./../middleware/userGift");
-const userModel = require("./../model/user")
+const userModel = require("./../model/user");
 const uploader = require("./../config/cloudinary");
-
-
 
 ///////////////////
 // GET - all events
@@ -36,8 +34,8 @@ router.get("/", async (req, res,next) => {
 router.get("/create", async (req, res, next) => {
   try {
     // await eventModel.create(req.body);
-    const lists = await listsModel.find() ;
-    res.render("createEvent", {lists}) ;
+    const lists = await listsModel.find();
+    res.render("createEvent", { lists });
   } catch (err) {
     next(err);
   }
@@ -56,20 +54,19 @@ router.post("/create", async (req, res, next) => {
   } catch(err) {
     next(err)
   }
-})
-
+});
 
 ////////////////////////
 // GET - delete an event
 ////////////////////////
 
 router.get("/delete/:id", async (req, res, next) => {
-    try {
-      await eventModel.findByIdAndRemove(req.params.id);
-      res.redirect("/events");
-    } catch (err) {
-      next(err);
-    }
+  try {
+    await eventModel.findByIdAndRemove(req.params.id);
+    res.redirect("/events");
+  } catch (err) {
+    next(err);
+  }
 });
 
 ////////////////////////
@@ -77,13 +74,13 @@ router.get("/delete/:id", async (req, res, next) => {
 ////////////////////////
 
 router.get("/update/:id", async (req, res, next) => {
-    try {
-      await eventModel.findById(req.params.id);
-      res.render("dashboard/eventUpdate");
-    } catch (err) {
-      next(err);
-    }
-  });
+  try {
+    await eventModel.findById(req.params.id);
+    res.render("dashboard/eventUpdate");
+  } catch (err) {
+    next(err);
+  }
+});
 
 /////////////////////////
 // ADD list to an event
@@ -91,28 +88,30 @@ router.get("/update/:id", async (req, res, next) => {
 
 router.post("/addlist/:id", async (req, res, next) => {
   try {
-    await eventModel.findById(req.params.id) 
-      .update({$addToSet: { lists: req.body.list}}) ;
-    res.redirect("/events/"+req.params.id)
-  } catch(err) {
-    next(err)
+    await eventModel
+      .findById(req.params.id)
+      .update({ $addToSet: { lists: req.body.list } });
+    res.redirect("/events/" + req.params.id);
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 /////////////////////////
 //  ADD event to a user
 /////////////////////////
 
-router.post('/addToUser/:id', async function(req, res, next) {
+router.post("/addToUser/:id", async function (req, res, next) {
   // id is the list id
   try {
-    await userModel.find({email: req.body.email}) 
-      .update({$addToSet: { events: req.params.id}}) ;
-    res.redirect("/events/"+req.params.id)
-  } catch(err) {
-    next(err)
+    await userModel
+      .find({ email: req.body.email })
+      .update({ $addToSet: { events: req.params.id } });
+    res.redirect("/events/" + req.params.id);
+  } catch (err) {
+    next(err);
   }
-})
+});
 
 //////////////////////////////
 // book gift
@@ -122,7 +121,7 @@ router.post('/addToUser/:id', async function(req, res, next) {
 router.get("/:idEvent/book/:idGift", async (req, res, next) => {
   try {
     const giftToBook = await GiftModel.findById(req.params.idGift);
-    res.render("giftBook", { gift: giftToBook , eventId: req.params.idEvent});
+    res.render("giftBook", { gift: giftToBook, eventId: req.params.idEvent });
   } catch (error) {
     next(error);
   }
@@ -148,9 +147,6 @@ router.post("/:idEvent/book/:idGift", uploader.single("cover"), async (req, res,
 // Specific event
 /////////////////////////
 
-
-
-
 router.get("/:id", getUserGifts, async (req, res, next) => {
   try {
     const event = await eventModel.findById(req.params.id).populate({
@@ -163,8 +159,6 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
   } catch(err) {
     next(err)
   }
-})
-
-
+});
 
 module.exports = router;

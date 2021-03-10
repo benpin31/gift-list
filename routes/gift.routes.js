@@ -38,30 +38,34 @@ router.get("/users", async (req, res, next) => {
 router.get("/create/:id", async (req, res, next) => {
   // id id the id of the list
   try {
-    res.render("giftCreate", {listId: req.params.id});
+    res.render("giftCreate", { listId: req.params.id });
   } catch (error) {
     next(error);
   }
 });
 
 //* POST - Create a new gift
-router.post("/create/:id", uploader.single("picture"), async (req, res, next) => {
-  const newGift = { ...req.body };
-  console.log("newGift", newGift);
-  if (req.file) {
-    newGift.picture = req.file.path;
-  } else {
-    newGift.picture = undefined;
+router.post(
+  "/create/:id",
+  uploader.single("picture"),
+  async (req, res, next) => {
+    const newGift = { ...req.body };
+    if (req.file) {
+      newGift.picture = req.file.path;
+    } else {
+      newGift.picture = undefined;
+    }
+    try {
+      const createdGift = await GiftModel.create(newGift);
+      await listModel
+        .findById(req.params.id)
+        .update({ $addToSet: { gifts: createdGift } });
+      res.redirect("/lists/" + req.params.id);
+    } catch (error) {
+      next(error);
+    }
   }
-  try {
-    const createdGift = await GiftModel.create(newGift);
-    console.log(createdGift);
-    await listModel.findById(req.params.id).update({ $addToSet: { gifts: createdGift } }) ;
-    res.redirect("/lists/"+req.params.id);
-  } catch (error) {
-    next(error);
-  }
-});
+);
 
 //* DELETE delete a gift
 router.delete("/delete/:id", async (req, res, next) => {
@@ -78,7 +82,6 @@ router.delete("/delete/:id", async (req, res, next) => {
 router.get("/update/:id", async (req, res, next) => {
   try {
     const giftToUpdate = await GiftModel.findById(req.params.id);
-    console.log("giftToUpdate", giftToUpdate);
     res.render("giftUpdate", giftToUpdate);
   } catch (error) {
     next(error);
@@ -104,8 +107,6 @@ router.post("/update/:id", uploader.single("cover"), async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 // router.get("/giftGifter/:id", async (req, res, next) => {
 //   try {
