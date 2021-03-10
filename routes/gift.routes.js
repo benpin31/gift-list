@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 const GiftModel = require("./../model/gift"); //Path to GiftModel
 const uploader = require("./../config/cloudinary");
+const listModel = require("./../model/list");
 
 //* GET all gifts
 router.get("/users", async (req, res, next) => {
@@ -34,16 +35,17 @@ router.get("/users", async (req, res, next) => {
 // });
 
 //* GET - create a gift
-router.get("/create", async (req, res, next) => {
+router.get("/create/:id", async (req, res, next) => {
+  // id id the id of the list
   try {
-    res.render("giftCreate");
+    res.render("giftCreate", {listId: req.params.id});
   } catch (error) {
     next(error);
   }
 });
 
 //* POST - Create a new gift
-router.post("/create", uploader.single("picture"), async (req, res, next) => {
+router.post("/create/:id", uploader.single("picture"), async (req, res, next) => {
   const newGift = { ...req.body };
   console.log("newGift", newGift);
   if (req.file) {
@@ -52,9 +54,10 @@ router.post("/create", uploader.single("picture"), async (req, res, next) => {
     newGift.picture = undefined;
   }
   try {
-    await GiftModel.create(newGift);
-    console.log("New gift created");
-    res.redirect("/lists/");
+    const createdGift = await GiftModel.create(newGift);
+    console.log(createdGift);
+    await listModel.findById(req.params.id).update({ $addToSet: { gifts: createdGift } }) ;
+    res.redirect("/lists/"+req.params.id);
   } catch (error) {
     next(error);
   }
@@ -102,30 +105,15 @@ router.post("/update/:id", uploader.single("cover"), async (req, res, next) => {
   }
 });
 
-//* GET - book a gift
-router.get("/book/:id", async (req, res, next) => {
-  try {
-    const giftToBook = await GiftModel.findById(req.params.id);
-    res.render("giftBook", { gift: giftToBook });
-  } catch (error) {
-    next(error);
-  }
-});
 
-//* POST - book a given gift
-router.post("/book/:id", uploader.single("cover"), async (req, res, next) => {
-  const { name, message } = req.body;
-  const gifters = [{ name, message }];
-  try {
-    const updatedGift = await GiftModel.findByIdAndUpdate(
-      req.params.id,
-      { isAvailable: false, gifters },
-      { new: true }
-    );
-    res.redirect("/lists");
-  } catch (error) {
-    next(error);
-  }
-});
+
+// router.get("/giftGifter/:id", async (req, res, next) => {
+//   try {
+//     const giftToBook = await GiftModel.findById(req.params.id);
+//     res.render("giftGifter", { gift: giftToBook });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;
