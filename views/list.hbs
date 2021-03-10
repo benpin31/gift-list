@@ -1,23 +1,5 @@
 
 <div class="list">
-    {{!-- {{list.name}}
-    {{#each list.gifts}}
-    <div class="gift-in-list">
-        <div >
-            <ul>
-                <li>{{this.name}}</li>
-                <li>{{this.price}}</li>
-            </ul>
-        </div> 
-        <div>
-            {{#if this.isTaken}}
-                Has been bought
-            {{else}}
-                Nobody has bought it
-            {{/if}}
-        </div>
-    </div>
-    {{/each}} --}}
     {{> list list}}
 
     <form action="/lists/addGift/{{list._id}}" method="post">
@@ -36,5 +18,6 @@
         <button>Add to the user</button>
     </form>
 
+    <a href="/gifts/create/{{list._id}}">Create A gift</a>
     <a href="/lists/delete/{{list._id}}">Delete the list</a>
 </div>

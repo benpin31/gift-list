@@ -50,6 +50,10 @@ router.get("/signin", (req, res, next) => res.render("signin"));
 //* POST signin
 router.post(
   "/signin",
+  (req, res, next) => {
+    console.log("ici");
+    next();
+  },
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/signin",

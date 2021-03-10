@@ -17,8 +17,7 @@ async function create() {
       password: bcryptjs.hashSync("1234", 10),
       lists: await ListModel.find({
         $and: [
-          { name: { $in: ["Mélanie", "Charles", "Félix", "Eliott"] } },
-          { lastName: "Féron" },
+          { name: { $in: ["Mélanie", "Charles", "Félix", "Eliott"] } }
         ],
       }),
       events: await EventModel.find({ name: "Christmas" }),
@@ -30,8 +29,7 @@ async function create() {
       password: bcryptjs.hashSync("12345", 10),
       lists: await ListModel.find({
         $and: [
-          { name: { $in: ["Charles", "Félix", "Eliott"] } },
-          { lastName: "Féron" },
+          { name: { $in: ["Charles", "Félix", "Eliott"] } }
         ],
       }),
       events: await EventModel.find({ name: "Christmas" }),
@@ -42,7 +40,7 @@ async function create() {
       email: "benji@gmail.com",
       password: bcryptjs.hashSync("123456", 10),
       lists: await ListModel.find({
-        $and: [{ name: "Benjamin" }, { lastName: "Pinard" }],
+        $and: [{ name: "Benjamin" }],
       }),
       events: await EventModel.find({
         name: { $in: ["Christmas", "Benjamin Birthday"] },

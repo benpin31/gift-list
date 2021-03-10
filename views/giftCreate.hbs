@@ -1,6 +1,6 @@
 <section class="newGift">
 <h1>Create a gift</h1>
-<form action="gifts/create" method="post" class="createGift" enctype="multipart/form-data">
+<form action="/gifts/create/{{listId}}" method="post" class="createGift" enctype="multipart/form-data">
 
 <label for="name">Name</label>
 <input class="input" type="text" id="name" name="name">
@@ -37,7 +37,7 @@
 </select>
 <a href="/">Add a new event</a> --}}
 
-<label for="isFavorite"></label>
+<label for="isFavorite">is Favorite ?</label>
 <input class="input" type="checkbox" id="isFavorite" name="isFavorite">
 
 <button class="button-primary add-gift-btn">Add gift</button>

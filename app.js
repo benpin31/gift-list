@@ -1,6 +1,6 @@
 require("dotenv").config();
 require("./config/mongo");
-
+require("./config/passport");
 // base dependencies
 const createError = require("http-errors");
 const express = require("express");
@@ -54,45 +54,11 @@ app.use(
   })
 );
 
-// Passport serializer
-passport.serializeUser((user, cb) => cb(null, user._id));
-// Passport deserializer
-passport.deserializeUser((id, cb) => {
-  User.findById(id)
-    .then((user) => cb(null, user))
-    .catch((err) => cb(err));
-});
-// Passport strategy
-passport.use(
-  new LocalStrategy(
-    { passReqToCallback: true },
-    {
-      usernameField: "email",
-      passwordField: "password", // by default
-    },
-    (email, password, done) => {
-      UserModel.findOne({ email })
-        .then((user) => {
-          if (!user) {
-            return done(null, false, { message: "Incorrect email" });
-          }
-
-          if (!bcrypt.compareSync(password, user.password)) {
-            return done(null, false, { message: "Incorrect password" });
-          }
-
-          done(null, user);
-        })
-        .catch((err) => done(err));
-    }
-  )
-);
-
 // initial config
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // passport initialisation

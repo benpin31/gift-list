@@ -8,12 +8,12 @@
     <p><i class="fas fa-heart"></i></p>
     {{/if}}
       <h1 class="gift-name">{{this.name}}</h1>
-    {{#unless this.brand}}
+    {{#if this.brand}}
       <p class="gift brand">by {{this.brand}}</p>
-    {{/unless}}
-    {{#unless this.price}}
+    {{/if}}
+    {{#if this.price}}
       <h4 class="gift-price">{{this.price}} {{this.currency}}</h4>
-    {{/unless}}
-    {{#unless this.comment}}
+    {{/if}}
+    {{#if this.comment}}
       <p class="comment">Comment: {{this.comment}}</p>
-    {{/unless}}
+    {{/if}}
