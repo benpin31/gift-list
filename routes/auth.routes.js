@@ -75,15 +75,38 @@ router.get("/signout", (req, res, next) => {
 });
 
 //* DELETE  user
-router.delete("/delete/:id", async (req, res, next) => {
+router.delete("/profile/delete/", async (req, res, next) => {
   try {
-    const { userId } = req.params.id;
-    await UserModel.findById(UserId);
+    const { userId } = req.user._id;
+    await UserModel.findById(userId);
   } catch (error) {
     next(error);
   }
 });
 
 //* GET modify user profile
+router.get("/profile", async (req, res, next) => {
+  try {
+    const userToModify = await UserModel.findById(req.user._id);
+    res.render("profile", userToModify);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//* POST modify user profile
+router.post("/profile", async (req, res, next) => {
+  const userToUpdate = { ...req.body };
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(
+      req.params.id,
+      userToUpdate,
+      { new: true }
+    );
+    res.redirect("/profile");
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
