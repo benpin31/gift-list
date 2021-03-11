@@ -74,4 +74,14 @@ router.get("/signout", (req, res, next) => {
   });
 });
 
+//* DELETE  user
+router.delete("/delete/:id", async (req, res, next) => {
+  try {
+    const { userId } = req.params.id;
+    await UserModel.findById(UserId);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

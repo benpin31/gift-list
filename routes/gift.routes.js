@@ -73,7 +73,6 @@ router.delete("/delete/:id", async (req, res, next) => {
     const { giftId } = req.params.id;
     await GiftModel.findById(giftId);
   } catch (error) {
-    rs;
     next(error);
   }
 });
