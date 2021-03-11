@@ -74,7 +74,7 @@ button {
   height: 50px;
   background: #3967ff;
   display: flex;
-  z-index: 1;
+  z-index: 1 ;
 }
 
 .header__button {
@@ -222,7 +222,7 @@ button {
 }
 
 .create_list {
-  display: fixed;
+  color: white;
   position: fixed;
   background-color: #3967ff;
   padding: 10px ;
@@ -230,6 +230,17 @@ button {
   border-radius: 3px;
   bottom: 0px;
   text-align: center;
+  height: 40px;
+  
+}
+
+.fixed-foot {
+  position: fixed;
+  height: 60px;
+  bottom: 0 ;
+  left: 0 ;
+  background-color: white;
+  width: 100%;
 }
 
 
@@ -277,6 +288,7 @@ button {
   border-radius: 3px;
   bottom: 0px;
   right: 0px;
+  height: 40px;
 }
 
 .list_title {
