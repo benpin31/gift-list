@@ -2,19 +2,22 @@
     <div class="page_title">My lists</div>
     {{#each lists}} 
     <div class="list-container">
-        <a href="/lists/{{this._id}}">{{this.name}}</a>
-        <div id="event-crud">
-
-            
-            <a href="/lists/update/{{this._id}}"><i class="fas fa-edit" style="color:blue"></i></a>
-            <a href="/lists/delete/{{this._id}}"><i class="fas fa-trash-alt red"></i></a>
-        </div>
-        
+        <a href="/lists/{{this._id}}">
+            <div class="list_item"><strong>{{this.name}}</strong>'s list</div>
+        </a>
+        <a href="/lists/update/{{this._id}}" class="list-actions list-edit">
+            <div class="edit_item">
+                <i class="fas fa-edit"></i>
+            </div>
+        </a>
+        <a href="/lists/delete/{{this._id}}" class="list-actions list-delete">
+            <div class="delete_item">
+                <i class="fas fa-trash-alt red"></i>
+            </div>
+        </a>
     </div>
     {{/each}}
     <div class="fixed-foot">
         <a href="/lists/create" class="create_list">Create a new list</a>
     </div>
-
 </div>
-

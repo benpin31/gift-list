@@ -95,7 +95,7 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   height: 100vh;
   width: 250px;
   background: #ffffff;
@@ -144,6 +144,7 @@ button {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s;
+  z-index: 2;
 }
 
 .nav--open .nav__overlay {
@@ -172,19 +173,54 @@ button {
 }
 
 .list-container{
-  border: 1px solid rgb(194, 194, 194) ;
   display: flex ;
   justify-content: space-between;
-  padding: 10px ;
-  margin: 10px ;
-  border-radius: 3px;
+  flex-wrap: nowrap;
+  align-items: center;
+  /* padding: 10px ;
+  margin: 10px ; */
+  /* border-radius: 3px; */
   color: rgb(26, 26, 26);
+  width: 100%;
 }
 
-.list-container:hover {
+.list-item:hover {
   background-color: rgb(247, 247, 247);
   cursor: pointer;
 }
+
+.list_item {
+  display: inline-block;
+  border: 1px solid rgb(194, 194, 194) ;
+  padding: 10px ; 
+  margin: 5px 0;
+  border-radius: 3px;
+  width: 70vw;
+  /* text-align: center; */
+}
+
+.edit_item{
+  color: #3967ff;
+  display: inline-block;
+  border: 1px solid #3967ff ;
+  padding: 10px ;
+  margin: 5px 0;
+  border-radius: 3px;
+  width: 10vw;
+  text-align: center;
+  
+}
+
+.delete_item{
+  text-align: center;
+  display: inline-block;
+  border: 1px solid rgb(255, 141, 141) ;
+  padding: 10px ;
+  
+  border-radius: 3px;
+  width: 10vw;
+}
+
 
 .red {
   color: rgb(255, 122, 122);
@@ -248,7 +284,7 @@ button {
 }
 
 .not-bought {
-  background-color: rgb(104, 255, 217);
+  background-color: rgb(196, 255, 240);
   color: black;
   padding:5px;
   border-radius: 2px;
@@ -393,15 +429,20 @@ select {
 
 .page_title {
   font-family: 'Poppins', sans-serif;
-  font-size: xx-large;
+  font-size: x-large;
   padding-bottom: 20px;
 }
 
-[type="date"] {
+input[type="date"] {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
 input[type="text"]
+{
+    font-size:16px;
+}
+
+input[type="email"]
 {
     font-size:16px;
 }
@@ -517,7 +558,7 @@ input:checked + .slider:before {
 }
 
 .filter {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 50px;
   width: 100%;
@@ -528,6 +569,12 @@ input:checked + .slider:before {
   padding-left: 10px;
   background-color: #f1f1f1;
   align-items: center;
+  z-index: 1 ;
+}
+
+.push-down{
+  position: relative;
+  padding-top:50px;
 }
 
 .filter label {
@@ -540,4 +587,15 @@ input:checked + .slider:before {
   align-items: center;
   /* justify-content: center; */
   padding-right: 5px;
+  
+}
+
+.three_button {
+  display: flex;
+}
+
+.page_title2 {
+  font-size: xx-large;
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 10px;
 }
