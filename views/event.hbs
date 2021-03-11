@@ -1,32 +1,25 @@
-<<<<<<< HEAD
+    <div class="search"> 
+        <form action="">
+            <label for="isAvailaible">Available</label>  
+            <input type="checkbox"  id="isAvailaible" name="isAvailaible">
+        </form>
+        <form>
+            <a id="increase-filter"><i class="fas fa-sort-amount-down-alt"></i></a>
+            <a id="decrease-filter"><i class="fas fa-sort-amount-down"></i></a>
+        </select>
+        </form> 
+    </div>
+    <div class="page_title">{{event.name}}</div> 
 <div class="create_list_form">
-    <div class="page_title">Event {{event.name}}</div> 
     {{!-- {{event._id}} --}}
     {{#each event.lists}}
-        {{!-- {{> list name=this.name gifts=this.gifts eventId=../event._id}} --}}
-        {{> list name=this.name gifts=this.gifts}}
-=======
-<div class="list">
-    {{#each event.lists}}
-        <div class="event-list-container">
-            <h2>{{this.name}} list</h2>
-            {{> list name=this.name gifts=this.gifts eventId=../event._id}}
-        </div>
->>>>>>> main
+        {{> list name=this.name gifts=this.gifts eventId=../event._id}}
+        {{!-- {{> list name=this.name gifts=this.gifts}} --}}
     {{/each}}
 
     {{#if isConnected}} 
 
-<<<<<<< HEAD
-    <form action="/events/addToUser/{{event._id}}" method="post" class="invite_user">
-        <label for="list-add-to-user">Invite colaborator to the list via emai</label>
-        <input type="email" name="email" id="list-add-to-user" placeholder="Enter colaborator's email">
-        <button class="btn">Invite</button>
-    </form>
-
-    <a class="delete_list" href="/lists/delete/{{list._id}}">Delete the list</a>
-=======
-    <div class="manage-list">
+        <div class="manage-list">
         <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
             <button>Add a list</button>
             <select name="list" id="list-add-gifts" multiple>
@@ -41,7 +34,7 @@
             <label for="list-add-to-user"></label>
             <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
         </form>
+     {{/if}}
     </div>
-    {{/if}}
->>>>>>> main
 </div>
+

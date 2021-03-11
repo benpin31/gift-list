@@ -167,12 +167,32 @@ router.post("/:idEvent/book/:idGift", uploader.single("cover"), async (req, res,
 
 router.get("/:id", getUserGifts, async (req, res, next) => {
   try {
-    const event = await eventModel.findById(req.params.id).populate({
-      path: "lists",
-      populate: {
-        path: "gifts",
-      },
-    });
+    let event ;
+    // const availableField = req.query.isAvailable ? "isAvailable" : "other";
+    const priceField = req.query.price ? "price" : "other";
+
+    // const isAvailable = req.query.isAvailable ? true : false;
+    const priceOrder = req.query.price ;
+
+    if(req.query.isAvailable) {
+      event = await eventModel.findById(req.params.id).populate({
+        path: "lists",
+        populate: {
+          path: "gifts",
+          match: {isAvailable: true},
+          options: { sort: { [priceField]: priceOrder } }
+        },
+      });
+    } else {
+      event = await eventModel.findById(req.params.id).populate({
+        path: "lists",
+        populate: {
+          path: "gifts",
+          options: { sort: { [priceField]: priceOrder } }
+        },
+      });    
+    }
+
     res.render("event", {event, lists: req.userLists, isConnected: Boolean(req.user)}) ;
   } catch(err) {
     next(err)

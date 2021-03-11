@@ -1,6 +1,5 @@
 <div class="list">
     {{> list list}}
-<<<<<<< HEAD
     <form action="/lists/addGift/{{list._id}}" method="post">
         <label for="list-add-gifts">Select to add the gift to the list</label>
         <select name="gifts" id="list-add-gifts" multiple>
@@ -11,40 +10,13 @@
         <button  class="btn">Add a gift</button>
     </form>
     <form action="/lists/addToUser/{{list._id}}" method="post" class="invite_user">
-        <label for="list-add-to-user">Invite colaborator to the list via emai</label>
+        <label for="list-add-to-user">Invite colaborator to the list via email</label>
         <input type="email" name="email" id="list-add-to-user" placeholder="Enter colaborator's email">
         <button class="btn">Invite</button>
     </form>
     <div class="flex">
         <a class="create_gift" href="/gifts/create/{{list._id}}">Create a new gift</a>
     <a class="delete_list" href="/lists/delete/{{list._id}}">Delete the list</a>
-    </div>
-    
-</div>
-
-{{!-- 
-<div class="list">
-    {{> list list}}
-=======
->>>>>>> main
-
-    <div class="manage-list">
-        <form action="/lists/addGift/{{list._id}}" method="post" class="create_list_form"> 
-            <button>Add an already existing gift</button>
-            <select name="gifts" id="list-add-gifts" multiple>
-            {{#each gifts}}
-                <option value="{{this._id}}">{{this.name}}</option>
-            {{/each}}
-            </select>   
-        </form>
-        <form action="/lists/addToUser/{{list._id}}" method="post" class="create_list_form">
-            <button>Share with another user</button>
-            <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
-        </form>
-    </div>
-    <div class="fixed-foot"> 
-        <a class="create_gift" href="/gifts/create/{{list._id}}">Create A gift</a>
-        <a class="delete_list" href="/lists/delete/{{list._id}}">Delete the list</a>
     </div>
     
 </div>
