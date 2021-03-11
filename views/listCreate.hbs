@@ -1,14 +1,14 @@
 <form action="/lists/create" method="post">
     <div class="create_list_form">
-        <div class="page_title">Create a list</div>
-        <label for="list-create-name" name="name" >Name</label>
+        <div class="page_title">Create a new list</div>
+        <label for="list-create-name" name="name" >Title</label>
         <input type="text" name="name" id="list-create-name" placeholder="Enter your list's name" required>
-        <label for="list-create-gifts" name="gifts">Gifts</label>
+        <label for="list-create-gifts" name="gifts">Fill the list with current gifts</label>
         <select name="gifts" id="list-create-gifts" multiple>
         {{#each gifts}}
             <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
         </select>
-        <button class="btn_all_width">Create a new list</button>
+        <button class="btn_all_width">Create</button>
     </div>
 </form>

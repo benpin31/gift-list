@@ -10,9 +10,9 @@
     </div>
         <div class="state {{#if this.isAvailable}}free{{else}}unavailable{{/if}}">
         {{#if this.isAvailable}}
-            <i class="fas fa-store-alt not-bought"></i> <a href="/events/{{../eventId}}/book/{{this._id}}">Choose it</a> 
+            <a class="not-bought" href="/events/{{../eventId}}/book/{{this._id}}">Choose it</a> 
         {{else}}
-            <i class="fas fa-store-alt bought"></i> <div>Bought by {{#each this.gifters}}{{#if this.name}}{{this.name}}{{else}}someone{{/if}} </div> {{/each}}
+         <div class="bought">Bought by {{#each this.gifters}}{{#if this.name}}{{this.name}}{{else}}someone{{/if}} </div> {{/each}}
         {{/if}}
         </div>
 </div>

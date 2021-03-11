@@ -1,22 +1,31 @@
 <div class="list">
     {{> list list}}
     <form action="/lists/addGift/{{list._id}}" method="post">
+        {{#if gifts}}
         <label for="list-add-gifts">Select to add the gift to the list</label>
         <select name="gifts" id="list-add-gifts" multiple>
         {{#each gifts}}
             <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
-        </select>   
+        </select>
+        <a class="create_gift" href="/lists/delete/{{list._id}}">Delete the list</a>   
         <button  class="btn">Add a gift</button>
+        {{else}}
+            <div class="flex">
+                <button class="btn_all_width" href="/gifts/create/{{list._id}}">Create a gift</button>
+            </div>
+        {{/if}}
     </form>
     <form action="/lists/addToUser/{{list._id}}" method="post" class="invite_user">
-        <label for="list-add-to-user">Invite colaborator to the list via emai</label>
+        <label for="list-add-to-user">Invite a collaborator to the list via Email</label>
         <input type="email" name="email" id="list-add-to-user" placeholder="Enter colaborator's email">
         <button class="btn">Invite</button>
     </form>
     <div class="flex">
-        <a class="create_gift" href="/gifts/create/{{list._id}}">Create a new gift</a>
+        
     <a class="delete_list" href="/lists/delete/{{list._id}}">Delete the list</a>
     </div>
     
 </div>
+
+

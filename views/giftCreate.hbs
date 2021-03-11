@@ -3,22 +3,22 @@
 <form action="/gifts/create/{{listId}}" method="post" class="createGift" enctype="multipart/form-data">
 
 <label for="name">Name</label>
-<input class="input" type="text" id="name" name="name" required>
+<input class="input" type="text" id="name" name="name" placeholder="Enter gift's name" required>
 
 <label for="brand">Brand</label>
-<input class="input" type="text" id="brand" name="brand">
+<input class="input" type="text" id="brand" name="brand" placeholder="Enter gift's brand">
 
 <label for="picture">Image of the gift</label>
 <input class="input" type="file" id="picture" name="picture"> 
 
 <label for="url">Url</label>
-<input class="input" type="text" id="url" name="urls">
+<input class="input" type="text" id="url" name="urls" placeholder="https//:www.example.com/">
 
 <label for="description">Description or comment</label>
-<textarea name="description" id="description" cols="54" rows="5"></textarea>
+<textarea name="description" id="description" cols="54" rows="5" placeholder="Enter a description for your gift"></textarea>
 
 <label for="price">Price</label>
-<input class="input" type="number" id="price" name="price">
+<input class="input" type="number" id="price" name="price" placeholder="90">
 
 {{!-- todo: Replace fix value with dynamic ones
 <select id="list" name="list" class="select" required>

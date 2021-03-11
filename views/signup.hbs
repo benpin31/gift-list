@@ -17,22 +17,22 @@
 
 </div>
 </form> --}}
-
+<img src="/img/sign_up.png" style="width: 100%;" alt="">
 <div class="page_title">Sign Up</div>
  
 <form action="/signup" method="POST" id="form-container">
 <div class="create_list_form">
 <label for="name">Firstname</label>
-<input class="input" type="text" id="name" name="name" placeholder="Your first name">
+<input class="input" type="text" id="name" name="name" placeholder="Your first name" required>
 
 <label for="lastname">Lastname</label>
-<input class="input" type="text" id="lastname" name="lastname" placeholder="Your last name">
+<input class="input" type="text" id="lastname" name="lastname" placeholder="Your last name" required>
  
 <label for="email">Email</label>
-<input id="email" type="text" name="email" placeholder="Your email address">
+<input id="email" type="email" name="email" placeholder="Your email address" required>
  
 <label for="password">Password</label>
-<input id="password" type="password" name="password" placeholder="Your password">
+<input id="password" type="password" name="password" placeholder="Your password" required>
  
 {{#if errorMessage}}
  <div class="error-message">{{errorMessage}}</div>

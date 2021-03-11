@@ -27,6 +27,7 @@ textarea {
   border: 1px solid rgb(194, 194, 194) ;
   padding: 15px;
   border-radius: 3px;
+  width: 100%;
 }
 
 
@@ -100,6 +101,7 @@ button {
   background: #ffffff;
   transform: translateX(-250px);
   transition: transform 0.3s;
+  padding-top: 50px;
 }
 
 .nav--open .nav__links {
@@ -110,9 +112,9 @@ button {
 .nav__link {
   display: flex;
   align-items: center;
-  color: #666666;
+  color: #252525;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   text-decoration: none;
   padding: 12px 15px;
   background: transform 0.2s;
@@ -190,12 +192,15 @@ button {
 
 .gift_list{
   border: 1px solid rgb(194, 194, 194) ;
-  position: relative ;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgb(26, 26, 26);
   list-style: none;
-  display: flex;
-  flex-direction: row;
   margin-bottom: 10px;
+  height: 200px;
+  border-radius: 3px;
 }
 
 /* .gift_list:hover {
@@ -204,24 +209,50 @@ button {
 
 .gift_image {
   object-fit: cover;
-  height: 150px;
-  width: 150px;
+  left: 0;
+  position: absolute; 
+  width: 50%;
+  height: 100%;
 }
 
+.gift_name {
+  position: absolute;
+  right:0;
+  top: 0;
+  padding: 10px;
+  text-align: right;
+}
+.gift_price {
+  position: absolute;
+  right:0;
+  top: 10%;
+  padding: 10px;
+  text-align: right;
+}
+.state {
+  position: absolute;
+  right:0;
+  bottom: 0;
+  padding: 10px;
+  text-align: left;
 
-.bought {
-  padding:2px;
-  background-color: rgb(132, 206, 132);
-  color: #ffffff;
-  width: fit-content+2px;
-  border-radius: 2px;
 }
 
 .not-bought {
-  background-color: rgb(142, 216, 226);
-  color: black;
-  width: fit-content+2px;
+  padding:2px;
+  background-color: rgb(223, 223, 223);
+  color: rgb(112, 112, 112);
   border-radius: 2px;
+  border: 1px solid rgb(112, 112, 112);
+  padding:5px;
+}
+
+.not-bought {
+  background-color: rgb(104, 255, 217);
+  color: black;
+  padding:5px;
+  border-radius: 2px;
+  border: 1px solid rgb(136, 136, 136);
 }
 
 .create_list {
@@ -401,6 +432,7 @@ select option {
 p {
   text-align: justify;
   text-justify: inter-word;
+  line-height: 24px;
 }
 
 
@@ -467,6 +499,14 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-textarea {
+.error-message {
   width: 100%;
+  height: 47px;
+  background-color: rgb(255, 210, 210);
+  border: 1px solid rgb(255, 122, 122);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
 }
