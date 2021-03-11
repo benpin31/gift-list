@@ -17,5 +17,6 @@ const storage = new CloudinaryStorage({
 
 const uploader = multer({ storage });
 // a middleware designed to parse file from requests and associate to req.file
+// comment
 
 module.exports = uploader;
