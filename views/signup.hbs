@@ -1,28 +1,48 @@
-<h2>Sign up</h2>
+{{!-- <form action="/signin" method="POST">
+
+ <label for="email">Email</label>
+ <input type="text" name="email" placeholder="Enter your email">
+ 
+ <label for="password">Password</label>
+ <input type="password" name="password" placeholder="Enter your password">
+ 
+ {{#if errorMessage}}
+ <div class="error-message">{{errorMessage}}</div>
+ {{/if}}
+ <button class="btn_all_width">Log in</button>
+
+ <p class="text_center">You don't have an account? <a href="/signup" class="link_style">Sign up here</a></p>
+
+
+
+</div>
+</form> --}}
+
+<div class="page_title">Sign Up</div>
  
 <form action="/signup" method="POST" id="form-container">
-
+<div class="create_list_form">
 <label for="name">Firstname</label>
-<input class="input" type="text" id="name" name="name">
+<input class="input" type="text" id="name" name="name" placeholder="Your first name">
 
 <label for="lastname">Lastname</label>
-<input class="input" type="text" id="lastname" name="lastname">
+<input class="input" type="text" id="lastname" name="lastname" placeholder="Your last name">
  
 <label for="email">Email</label>
-<input id="email" type="text" name="email">
+<input id="email" type="text" name="email" placeholder="Your email address">
  
 <label for="password">Password</label>
-<input id="password" type="password" name="password">
+<input id="password" type="password" name="password" placeholder="Your password">
  
 {{#if errorMessage}}
  <div class="error-message">{{errorMessage}}</div>
 {{/if}}
  
- <button>Create account</button>
+ <button class="btn_all_width">Create account</button>
  
-<p class="account-message">
+<p class="text_center">
   Do you already have an account?
-  <a href="/signin">Sign in</a>
+  <a class="link_style" href="/signin">Sign in</a>
 </p>
- 
+ </div>
 </form>

@@ -1,8 +1,10 @@
 <form action="/events/create" method="post">
+<div class="create_list_form">
+    <div class="page_title">Create an event</div>
     <label for="event-create-name" name="name">Name</label>
-    <input type="text" name="name" id="event-create-name">
-    <label for="event-create-description" name="description">Description</label>
-    <input type="text" name="description" id="event-create-description">
+    <input type="text" name="name" id="event-create-name" placeholder="Enter event name" required>
+    <label for="event-create-description" name="description" >Description</label>
+    <input type="text" name="description" id="event-create-description" placeholder="Describe your event">
     <label for="event-create-date" name="date">Date</label>
     <input type="date" name="date" id="event-create-date">
     <select name="lists" id="event-add-list" multiple>
@@ -10,5 +12,6 @@
         <option value="{{this._id}}">{{this.name}}</option>
     {{/each}}
     </select>
-    <button>Create new event</button>
+    <button class="btn_all_width" >Create new event</button>
+</div>
 </form>

@@ -1,18 +1,18 @@
 <div class="list">
     {{> list list}}
     <form action="/lists/addGift/{{list._id}}" method="post">
-        <label for="list-add-gifts"></label>
+        <label for="list-add-gifts">Select to add the gift to the list</label>
         <select name="gifts" id="list-add-gifts" multiple>
         {{#each gifts}}
             <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
         </select>   
-        <button>Add a gift</button>
+        <button  class="btn">Add a gift</button>
     </form>
-    <form action="/lists/addToUser/{{list._id}}" method="post">
-        <label for="list-add-to-user"></label>
-        <input type="email" name="email" id="list-add-to-user">
-        <button>Add to the user</button>
+    <form action="/lists/addToUser/{{list._id}}" method="post" class="invite_user">
+        <label for="list-add-to-user">Invite colaborator to the list via emai</label>
+        <input type="email" name="email" id="list-add-to-user" placeholder="Enter colaborator's email">
+        <button class="btn">Invite</button>
     </form>
     <div class="flex">
         <a class="create_gift" href="/gifts/create/{{list._id}}">Create a new gift</a>

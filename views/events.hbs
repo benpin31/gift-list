@@ -1,12 +1,15 @@
+<div class="create_list_form">
 <div id="user-lists">
+    <div class="create_list_form">
+    <div class="page_title">My events</div>
     {{#each events}} 
     <div class="list-container">
         <a href="/events/{{this._id}}">{{this.name}}</a>
         <a href="/events/delete/{{this._id}}">Delete the event</a>
     </div>
     {{/each}}
-    <div class="list-container">
-        <a href="/events/create">Create new event</a>
-    </div>
+    
+        <a class="create_gift" class="btn_all_width" href="/events/create">Create a new event</a>
 
+</div>
 </div>

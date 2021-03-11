@@ -1,12 +1,10 @@
-
-<script>
-    name = name.charAt(0).toUpperCase()
-</script>
-
-<h1>Welcome back, {{user.name}} !</h1>
+<div class="page_title">Welcome, {{user.name}} !</div>
  
-<img src="/img/welcome.png" style="width: 400px;" alt="">
+<img src="/img/welcome.png" style="width: 100%;" alt="">
 
-<button class="btn_all_width"><a href="/lists/create"> Create a list</a></button>
-<button class="btn_all_width"><a href="/events/create">Create an event</a></button>
-<h1>hey</h1>
+<p>Your profile is empty, our app will let you manage your wishlist, either by creating a list or creating an event. Such as christmas, marriage or an anniversary</p>
+
+<div class="fix_btn">
+    <button class="btn_all_width"><a href="/lists/create" class="fix_link_style_btn"><i class="fas fa-list-alt"></i>  Create a list</a></button>
+<button class="btn_all_width"><a href="/events/create" class="fix_link_style_btn"><i class="fas fa-calendar-week"></i>  Create an event</a></button>
+</div>
