@@ -1,14 +1,23 @@
-<div class="list">
+<div class="search"> 
+        <form action="">
+            <label for="isAvailaible">Available</label>  
+            <input type="checkbox"  id="isAvailaible" name="isAvailaible">
+        </form>
+        <form>
+            <a id="increase-filter"><i class="fas fa-sort-amount-down-alt"></i></a>
+            <a id="decrease-filter"><i class="fas fa-sort-amount-down"></i></a>
+        </select>
+        </form> 
+    </div>
+    <div class="page_title">{{event.name}}</div> 
+<div class="create_list_form">
+    {{!-- {{event._id}} --}}
     {{#each event.lists}}
-        <div class="event-list-container">
-            <h2>{{this.name}} list</h2>
-            {{> list name=this.name gifts=this.gifts eventId=../event._id}}
-        </div>
+        {{> list name=this.name gifts=this.gifts eventId=../event._id}}
+        {{!-- {{> list name=this.name gifts=this.gifts}} --}}
     {{/each}}
-
     {{#if isConnected}} 
-
-    <div class="manage-list">
+        <div class="manage-list">
         <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
             <button>Add a list</button>
             <select name="list" id="list-add-gifts" multiple>
@@ -17,12 +26,11 @@
             {{/each}}
             </select>   
         </form>
-
         <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
             <button>Share with another user</button>
             <label for="list-add-to-user"></label>
             <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
         </form>
+     {{/if}}
     </div>
-    {{/if}}
 </div>
