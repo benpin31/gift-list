@@ -99,7 +99,7 @@ router.post("/profile", async (req, res, next) => {
   const userToUpdate = { ...req.body };
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
-      req.params.id,
+      req.user._id,
       userToUpdate,
       { new: true }
     );

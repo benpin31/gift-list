@@ -5,16 +5,16 @@ const uploader = require("./../config/cloudinary");
 const listModel = require("./../model/list");
 
 //* GET all gifts
-router.get("/users", async (req, res, next) => {
-  try {
-    const gifts = GiftModel.find();
-    res.render("allGifts", { gifts });
-  } catch (error) {
-    next(error);
-  }
-});
+// router.get("/", async (req, res, next) => {
+//   try {
+//     const gifts = GiftModel.find();
+//     res.render("allGifts", { gifts });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
-// //* GET gifts by user
+//* GET gifts by user
 // router.get("/users/:id", async (req, res, next) => {
 //   try {
 //     const { userId } = req.params.id;
@@ -24,7 +24,7 @@ router.get("/users", async (req, res, next) => {
 //   }
 // });
 
-// //* GET gifts by list
+//* GET gifts by list
 // router.get("/lists/:id", async (req, res, next) => {
 //   try {
 //     const { listId } = req.params.id;
@@ -50,7 +50,7 @@ router.post(
   uploader.single("picture"),
   async (req, res, next) => {
     const newGift = { ...req.body };
-    newGift.isFavorite = newGift.isFavorite ? true : false ;
+    newGift.isFavorite = newGift.isFavorite ? true : false;
     if (req.file) {
       newGift.picture = req.file.path;
     } else {

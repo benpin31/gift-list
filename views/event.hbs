@@ -19,18 +19,18 @@
     {{#if isConnected}} 
         <div class="manage-list">
         <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
-            <button>Add a list</button>
             <select name="list" id="list-add-gifts" multiple>
             {{#each lists}}
                 <option value="{{this._id}}">{{this.name}}</option>
             {{/each}}
-            </select>   
+            </select> 
+                        <button class="btn_all_width">Add a list</button>  
         </form>
         <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
-            <button>Share with another user</button>
-            <label for="list-add-to-user"></label>
             <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
+            <button class="btn_all_width">Invite someone to the event</button>
         </form>
+        <button class="btn_all_width" id="share_btn">Share your {{event.name}}'s list(s)</button>
      {{/if}}
     </div>
 </div>
