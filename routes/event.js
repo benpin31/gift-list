@@ -6,6 +6,11 @@ const GiftModel = require("./../model/gift"); //Path to GiftModel
 const getUserGifts = require("./../middleware/userGift");
 const userModel = require("./../model/user");
 const uploader = require("./../config/cloudinary");
+const protectPrivateRoute = require("./../middleware/protectRoute");
+const { findById } = require("./../model/user");
+const dateFormat = require("dateformat");
+
+
 
 ///////////////////
 // GET - all events
@@ -13,30 +18,29 @@ const uploader = require("./../config/cloudinary");
 
 // const list = await listModel.findById(req.params.id).populate("gifts") ;
 
-router.get("/", async (req, res, next) => {
-  try {
-    const user = await userModel
-      .findById(req.app.locals.userId)
-      .populate("events");
-    res.render("events", { events: user.events });
-    // const event = await eventModel.find();
-    // res.render("events", {event} );
-  } catch (err) {
-    next(err);
-  }
+router.get("/", protectPrivateRoute, async (req, res,next) => {
+    
+    try {
+      // console.log("totototoottoo" , req.user)
+      const user = await userModel
+          .findById(req.user._id)
+          .populate("events");
+      res.render("events", { events: user.events });
+    } catch (err) {
+      next(err);
+    }
+
 });
-
-router.get;
-
+    
 ///////////////////////////
 // GET - create a new event
 ///////////////////////////
 
-router.get("/create", async (req, res, next) => {
+router.get("/create", protectPrivateRoute, async (req, res, next) => {
   try {
     // await eventModel.create(req.body);
-    const lists = await listsModel.find();
-    res.render("createEvent", { lists });
+    const user = await userModel.findById(req.user._id).populate("lists");
+    res.render("createEvent", { lists:user.lists });
   } catch (err) {
     next(err);
   }
@@ -44,22 +48,16 @@ router.get("/create", async (req, res, next) => {
 
 router.post("/create", async (req, res, next) => {
   try {
-    const { name, date, description, lists } = req.body;
-    const newEvent = await eventModel.create({
-      name,
-      date,
-      description,
-      lists,
-    });
-    const user = await userModel.findById(req.app.locals.userId);
+    const {name, date, description, lists} = req.body ;
+    const newEvent = await eventModel.create({name, date, description, lists}) ;
+    const user = await userModel.findById(req.user._id);
     const userEvents = user.events;
     userEvents.push(newEvent._id);
-    await userModel.findByIdAndUpdate(req.app.locals.userId, {
-      events: userEvents,
-    });
-    res.redirect("/events");
-  } catch (err) {
-    next(err);
+    await userModel.findByIdAndUpdate(req.user._id, { events: userEvents });
+    res.redirect("/events")
+
+  } catch(err) {
+    next(err)
   }
 });
 
@@ -67,7 +65,7 @@ router.post("/create", async (req, res, next) => {
 // GET - delete an event
 ////////////////////////
 
-router.get("/delete/:id", async (req, res, next) => {
+router.get("/delete/:id", protectPrivateRoute, async (req, res, next) => {
   try {
     await eventModel.findByIdAndRemove(req.params.id);
     res.redirect("/events");
@@ -80,10 +78,23 @@ router.get("/delete/:id", async (req, res, next) => {
 // GET - update an event
 ////////////////////////
 
-router.get("/update/:id", async (req, res, next) => {
+router.get("/update/:id", protectPrivateRoute, async (req, res, next) => {
   try {
-    await eventModel.findById(req.params.id);
-    res.render("dashboard/eventUpdate");
+    const event = await eventModel.findById(req.params.id)
+    if(event.date) {
+      event.truncdate = dateFormat(event.date, "yyyy-mm-dd") ;
+    }
+    res.render("eventUpdate", {event});
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/update/:id", async (req, res, next) => {
+  try {
+    const {name, description, date} = req.body ;
+    await eventModel.findByIdAndUpdate(req.params.id, {name, description, date})
+    res.redirect("/events");
   } catch (err) {
     next(err);
   }
@@ -135,24 +146,20 @@ router.get("/:idEvent/book/:idGift", async (req, res, next) => {
 });
 
 //* POST - book a given gift
-router.post(
-  "/:idEvent/book/:idGift",
-  uploader.single("cover"),
-  async (req, res, next) => {
-    const { name, message } = req.body;
-    const gifters = [{ name, message }];
-    try {
-      const updatedGift = await GiftModel.findByIdAndUpdate(
-        req.params.idGift,
-        { isAvailable: false, gifters },
-        { new: true }
-      );
-      res.redirect("/events/" + req.params.idEvent);
-    } catch (error) {
-      next(error);
-    }
+router.post("/:idEvent/book/:idGift", uploader.single("cover"), async (req, res, next) => {
+  const { name, message } = req.body;
+  const gifters = [{ name, message }];
+  try {
+    const updatedGift = await GiftModel.findByIdAndUpdate(
+      req.params.idGift,
+      { isAvailable: false, gifters },
+      { new: true }
+    );
+    res.redirect("/events/"+req.params.idEvent);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 /////////////////////////
 // Specific event
@@ -166,9 +173,9 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
         path: "gifts",
       },
     });
-    res.render("event", { event, lists: req.userLists });
-  } catch (err) {
-    next(err);
+    res.render("event", {event, lists: req.userLists, isConnected: Boolean(req.user)}) ;
+  } catch(err) {
+    next(err)
   }
 });
 

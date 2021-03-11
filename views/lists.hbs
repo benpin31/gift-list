@@ -3,12 +3,15 @@
     {{#each lists}} 
     <div class="list-container">
         <a href="/lists/{{this._id}}">{{this.name}}</a>
-        <i class="fas fa-trash-alt red"><a href="/lists/delete/{{this._id}}"></a></i>
+        <div id="event-crud">
+            <a href="/lists/update/{{this._id}}"><i class="fas fa-edit" style="color:blue"></i></a>
+            <a href="/lists/delete/{{this._id}}"><i class="fas fa-trash-alt red"></i></a>
+        </div>
         
     </div>
     {{/each}}
-    <div class="create_list">
-        <a href="/lists/create">Create a new list</a>
+    <div class="fixed-foot">
+        <a href="/lists/create" class="create_list">Create a new list</a>
     </div>
 
 </div>

@@ -1,21 +1,23 @@
+<<<<<<< HEAD
 <div class="create_list_form">
     <div class="page_title">Event {{event.name}}</div> 
     {{!-- {{event._id}} --}}
     {{#each event.lists}}
         {{!-- {{> list name=this.name gifts=this.gifts eventId=../event._id}} --}}
         {{> list name=this.name gifts=this.gifts}}
+=======
+<div class="list">
+    {{#each event.lists}}
+        <div class="event-list-container">
+            <h2>{{this.name}} list</h2>
+            {{> list name=this.name gifts=this.gifts eventId=../event._id}}
+        </div>
+>>>>>>> main
     {{/each}}
 
-    <form action="/events/addlist/{{event._id}}" method="post">
-        <label for="list-add-gifts"></label>
-        <select name="list" id="list-add-gifts" multiple>
-        {{#each lists}}
-            <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-        </select>   
-        <button>Add an event</button>
-    </form>
+    {{#if isConnected}} 
 
+<<<<<<< HEAD
     <form action="/events/addToUser/{{event._id}}" method="post" class="invite_user">
         <label for="list-add-to-user">Invite colaborator to the list via emai</label>
         <input type="email" name="email" id="list-add-to-user" placeholder="Enter colaborator's email">
@@ -23,4 +25,23 @@
     </form>
 
     <a class="delete_list" href="/lists/delete/{{list._id}}">Delete the list</a>
+=======
+    <div class="manage-list">
+        <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
+            <button>Add a list</button>
+            <select name="list" id="list-add-gifts" multiple>
+            {{#each lists}}
+                <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+            </select>   
+        </form>
+
+        <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
+            <button>Share with another user</button>
+            <label for="list-add-to-user"></label>
+            <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
+        </form>
+    </div>
+    {{/if}}
+>>>>>>> main
 </div>

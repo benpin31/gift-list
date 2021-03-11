@@ -9,7 +9,7 @@ const getUserGifts = require("./../middleware/userGift");
 router.get("/create", getUserGifts, function (req, res, next) {
   try {
     res.render("listCreate", {
-      userId: req.app.locals.userId,
+      userId: req.user._id,
       gifts: req.userGifts,
     });
   } catch (err) {
@@ -20,12 +20,11 @@ router.get("/create", getUserGifts, function (req, res, next) {
 router.post("/create", async function (req, res, next) {
   try {
     const newList = await listModel.create(req.body);
-    const user = await userModel.findById(req.app.locals.userId);
+    const user = await userModel.findById(req.user._id);
     const userLists = user.lists;
     userLists.push(newList._id);
-    await userModel.findByIdAndUpdate(req.app.locals.userId, {
-      lists: userLists,
-    });
+    console.log(user, req.user._id)
+    await userModel.findByIdAndUpdate(req.user._id, { lists: userLists });
     res.redirect("/lists");
   } catch (err) {
     next(err);
@@ -35,10 +34,31 @@ router.post("/create", async function (req, res, next) {
 router.post("/addGift/:id", async function (req, res, next) {
   // id is the list id
   try {
-    await listModel
+    if(req.body.gifts) {
+      await listModel
       .findById(req.params.id)
       .update({ $addToSet: { gifts: req.body.gifts } }); //Pour dédoublonner
     res.redirect("/lists/" + req.params.id);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/update/:id", async (req, res, next) => {
+  try {
+    const list = await listModel.findById(req.params.id)
+    res.render("listEdit", {list});
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/update/:id", async (req, res, next) => {
+  try {
+    const {name} = req.body ;
+    await listModel.findByIdAndUpdate(req.params.id, {name})
+    res.redirect("/lists");
   } catch (err) {
     next(err);
   }
@@ -71,7 +91,7 @@ router.get("/", getUserGifts, async function (req, res, next) {
 
   try {
     const user = await userModel
-      .findById(req.app.locals.userId)
+      .findById(req.user._id)
       .populate("lists");
     res.render("lists", { lists: user.lists });
   } catch (err) {

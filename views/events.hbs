@@ -5,7 +5,10 @@
     {{#each events}} 
     <div class="list-container">
         <a href="/events/{{this._id}}">{{this.name}}</a>
-        <a href="/events/delete/{{this._id}}">Delete the event</a>
+        <div id="event-crud">
+            <a href="/events/update/{{this._id}}"><i class="fas fa-edit" style="color:blue"></i></a>
+            <a href="/events/delete/{{this._id}}"><i class="fas fa-trash-alt red"></i></a>
+        </div>
     </div>
     {{/each}}
     

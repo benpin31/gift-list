@@ -50,6 +50,7 @@ select {
   align-self: center;
 }
 
+
 /* .btn {
   height: 120px;
   width: 500px;
@@ -69,8 +70,7 @@ select {
   height: 50px;
   background: #3967ff;
   display: flex;
-  
-  
+  z-index: 1 ;
 }
 
 .header__button {
@@ -80,6 +80,7 @@ select {
   border: none;
   color: #ffffff;
   cursor: pointer;
+  padding: 0;
 }
 
 .nav__links {
@@ -141,6 +142,26 @@ select {
   opacity: 1;
 }
 
+.list {
+  padding-bottom:60px;
+}
+
+.manage-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.event-list-container {
+  margin-bottom: 20px;
+}
+
+.event-list-container > h2 {
+  background-color: #3967ff;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
 .list-container{
   border: 1px solid rgb(194, 194, 194) ;
   display: flex ;
@@ -162,7 +183,7 @@ select {
 
 .gift_list{
   border: 1px solid rgb(194, 194, 194) ;
-
+  position: relative ;
   color: rgb(26, 26, 26);
   list-style: none;
   display: flex;
@@ -170,9 +191,9 @@ select {
   margin-bottom: 10px;
 }
 
-.gift_list:hover {
+/* .gift_list:hover {
   cursor: pointer;
-}
+} */
 
 .gift_image {
   object-fit: cover;
@@ -197,7 +218,7 @@ select {
 }
 
 .create_list {
-  display: fixed;
+  color: white;
   position: fixed;
   bottom: 0px;
   background-color: #3967ff;
@@ -206,6 +227,17 @@ select {
   border-radius: 3px;
   bottom: 0px;
   text-align: center;
+  height: 40px;
+  
+}
+
+.fixed-foot {
+  position: fixed;
+  height: 60px;
+  bottom: 0 ;
+  left: 0 ;
+  background-color: white;
+  width: 100%;
 }
 
 
@@ -255,6 +287,7 @@ select {
   border-radius: 3px;
   bottom: 0px;
   right: 0px;
+  height: 40px;
 }
 
 .list_title {

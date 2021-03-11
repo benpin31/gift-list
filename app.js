@@ -1,6 +1,8 @@
 require("dotenv").config();
 require("./config/mongo");
 require("./config/passport");
+const protectPrivateRoute = require("./middleware/protectRoute");
+
 
 // base dependencies
 const createError = require("http-errors");
@@ -13,6 +15,7 @@ const hbs = require("hbs");
 const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
 const passport = require("passport");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -24,8 +27,8 @@ const listRouter = require("./routes/list");
 const eventRouter = require("./routes/event");
 const authRouter = require("./routes/auth.routes");
 
-// local variable
-app.locals.userId = "6048e241d639c3098718b7f6";
+// // local variable
+// app.locals.userId = "6048e241d639c3098718b7f6";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -45,15 +48,12 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true, // <== false if you don't want to save empty session object to the store
+    saveUninitialized: false, // <== false if you don't want to save empty session object to the store
     cookie: {
-      // sameSite: "none",
-      // httpOnly: true,
+      sameSite: "none",
+      httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24, // 24h * 60 min *60 s * 1000 ms === 1 day
     },
-    // store: new MongoStore({
-    //   mongooseConnection: mongoose.connection,
-    // }),
   })
 );
 
@@ -61,12 +61,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// flash initialization
+app.use(flash());
+
 // routers
 app.use("/", indexRouter);
 app.use("/events", eventRouter);
 app.use("/users", usersRouter);
-app.use("/lists", listRouter);
-app.use("/gifts", giftRouter);
+app.use("/lists", protectPrivateRoute, listRouter);
+app.use("/gifts", protectPrivateRoute, giftRouter);
 app.use("/", authRouter);
 
 // catch 404 and forward to error handler
