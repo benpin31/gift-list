@@ -15,6 +15,7 @@ const hbs = require("hbs");
 const session = require("express-session");
 const MongoStore = require("connect-mongo").default;
 const passport = require("passport");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -47,21 +48,21 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true, // <== false if you don't want to save empty session object to the store
+    saveUninitialized: false, // <== false if you don't want to save empty session object to the store
     cookie: {
-      // sameSite: "none",
-      // httpOnly: true,
+      sameSite: "none",
+      httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24, // 24h * 60 min *60 s * 1000 ms === 1 day
     },
-    // store: new MongoStore({
-    //   mongooseConnection: mongoose.connection,
-    // }),
   })
 );
 
 // passport initialisation
 app.use(passport.initialize());
 app.use(passport.session());
+
+// flash initialization
+app.use(flash());
 
 // routers
 app.use("/", indexRouter);

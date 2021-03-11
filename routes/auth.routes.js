@@ -29,15 +29,20 @@ router.post("/signup", async (req, res, next) => {
     //* 3. Create the hashed password and the user
     const hashedPassword = bcrypt.hashSync(newUser.password, bcryptSalt);
     newUser.password = hashedPassword;
-    await UserModel.create(newUser);
-    res.render("signin", {
-      msg: { status: "success", text: "Congrats ! You are now registered !" },
+    const insertedUser = await UserModel.create(newUser);
+    // Automatic login
+    req.login(insertedUser, function (err) {
+      if (err) {
+        console.log(err);
+      }
+      res.render("index", { req });
     });
   } catch (err) {
     let errorMessage = "";
     for (field in err.errors) {
       errorMessage += err.errors[field].message + "\n";
     }
+
     res.render("signup", {
       msg: { status: "error", text: errorMessage },
     });
@@ -45,7 +50,9 @@ router.post("/signup", async (req, res, next) => {
 });
 
 //* GET signin
-router.get("/signin", (req, res, next) => res.render("signin"));
+router.get("/signin", (req, res, next) =>
+  res.render("signin", { errorMessage: req.flash("error") })
+);
 
 //* POST signin
 router.post(
@@ -56,7 +63,7 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/signin",
-    failureFlash: false,
+    failureFlash: true,
   })
 );
 
