@@ -3,7 +3,6 @@ require("./config/mongo");
 require("./config/passport");
 const protectPrivateRoute = require("./middleware/protectRoute");
 
-
 // base dependencies
 const createError = require("http-errors");
 const express = require("express");

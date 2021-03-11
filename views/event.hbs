@@ -16,9 +16,7 @@
         {{> list name=this.name gifts=this.gifts eventId=../event._id}}
         {{!-- {{> list name=this.name gifts=this.gifts}} --}}
     {{/each}}
-
     {{#if isConnected}} 
-
         <div class="manage-list">
         <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
             <button>Add a list</button>
@@ -28,7 +26,6 @@
             {{/each}}
             </select>   
         </form>
-
         <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
             <button>Share with another user</button>
             <label for="list-add-to-user"></label>
