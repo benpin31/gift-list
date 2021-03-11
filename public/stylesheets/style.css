@@ -42,7 +42,9 @@ button {
   background-color:#3967ff;
   border: none;
   color: white;
+  padding: 10px;
 }
+
 .container {
   margin:10px;
   padding-top:50px;
@@ -51,6 +53,7 @@ button {
 #page_title {
   align-self: center;
 }
+
 
 /* .btn {
   height: 120px;
@@ -71,8 +74,7 @@ button {
   height: 50px;
   background: #3967ff;
   display: flex;
-  
-  
+  z-index: 1 ;
 }
 
 .header__button {
@@ -82,6 +84,7 @@ button {
   border: none;
   color: #ffffff;
   cursor: pointer;
+  padding: 0;
 }
 
 .nav__links {
@@ -143,6 +146,26 @@ button {
   opacity: 1;
 }
 
+.list {
+  padding-bottom:60px;
+}
+
+.manage-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.event-list-container {
+  margin-bottom: 20px;
+}
+
+.event-list-container > h2 {
+  background-color: #3967ff;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
 .list-container{
   border: 1px solid rgb(194, 194, 194) ;
   display: flex ;
@@ -164,7 +187,7 @@ button {
 
 .gift_list{
   border: 1px solid rgb(194, 194, 194) ;
-
+  position: relative ;
   color: rgb(26, 26, 26);
   list-style: none;
   display: flex;
@@ -172,9 +195,9 @@ button {
   margin-bottom: 10px;
 }
 
-.gift_list:hover {
+/* .gift_list:hover {
   cursor: pointer;
-}
+} */
 
 .gift_image {
   object-fit: cover;
@@ -199,7 +222,7 @@ button {
 }
 
 .create_list {
-  display: fixed;
+  color: white;
   position: fixed;
   background-color: #3967ff;
   padding: 10px ;
@@ -207,6 +230,17 @@ button {
   border-radius: 3px;
   bottom: 0px;
   text-align: center;
+  height: 40px;
+  
+}
+
+.fixed-foot {
+  position: fixed;
+  height: 60px;
+  bottom: 0 ;
+  left: 0 ;
+  background-color: white;
+  width: 100%;
 }
 
 
@@ -254,6 +288,7 @@ button {
   border-radius: 3px;
   bottom: 0px;
   right: 0px;
+  height: 40px;
 }
 
 .list_title {
@@ -284,4 +319,35 @@ select {
   border-radius: 3px;
   bottom: 0px;
   left: 0px;
+}
+
+.crud-a {
+  width: 10px;
+  height: 10px;
+  /* position: relative;
+  left: -10px; */
+  display: inline-block;
+}
+
+.state {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 150px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.state div {
+  text-align: right;
+}
+
+.free {
+  background-color: #3967ff;
+}
+
+.unavailable {
+  background-color:grey;
 }

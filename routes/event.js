@@ -6,6 +6,11 @@ const GiftModel = require("./../model/gift"); //Path to GiftModel
 const getUserGifts = require("./../middleware/userGift");
 const userModel = require("./../model/user");
 const uploader = require("./../config/cloudinary");
+const protectPrivateRoute = require("./../middleware/protectRoute");
+const { findById } = require("./../model/user");
+const dateFormat = require("dateformat");
+
+
 
 ///////////////////
 // GET - all events
@@ -13,7 +18,7 @@ const uploader = require("./../config/cloudinary");
 
 // const list = await listModel.findById(req.params.id).populate("gifts") ;
 
-router.get("/", async (req, res,next) => {
+router.get("/", protectPrivateRoute, async (req, res,next) => {
     
     try {
       // console.log("totototoottoo" , req.user)
@@ -31,11 +36,11 @@ router.get("/", async (req, res,next) => {
 // GET - create a new event
 ///////////////////////////
 
-router.get("/create", async (req, res, next) => {
+router.get("/create", protectPrivateRoute, async (req, res, next) => {
   try {
     // await eventModel.create(req.body);
-    const lists = await listsModel.find();
-    res.render("createEvent", { lists });
+    const user = await userModel.findById(req.user._id).populate("lists");
+    res.render("createEvent", { lists:user.lists });
   } catch (err) {
     next(err);
   }
@@ -60,7 +65,7 @@ router.post("/create", async (req, res, next) => {
 // GET - delete an event
 ////////////////////////
 
-router.get("/delete/:id", async (req, res, next) => {
+router.get("/delete/:id", protectPrivateRoute, async (req, res, next) => {
   try {
     await eventModel.findByIdAndRemove(req.params.id);
     res.redirect("/events");
@@ -73,10 +78,23 @@ router.get("/delete/:id", async (req, res, next) => {
 // GET - update an event
 ////////////////////////
 
-router.get("/update/:id", async (req, res, next) => {
+router.get("/update/:id", protectPrivateRoute, async (req, res, next) => {
   try {
-    await eventModel.findById(req.params.id);
-    res.render("dashboard/eventUpdate");
+    const event = await eventModel.findById(req.params.id)
+    if(event.date) {
+      event.truncdate = dateFormat(event.date, "yyyy-mm-dd") ;
+    }
+    res.render("eventUpdate", {event});
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/update/:id", async (req, res, next) => {
+  try {
+    const {name, description, date} = req.body ;
+    await eventModel.findByIdAndUpdate(req.params.id, {name, description, date})
+    res.redirect("/events");
   } catch (err) {
     next(err);
   }
@@ -155,7 +173,7 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
         path: "gifts",
       },
     });
-    res.render("event", {event, lists: req.userLists}) ;
+    res.render("event", {event, lists: req.userLists, isConnected: Boolean(req.user)}) ;
   } catch(err) {
     next(err)
   }

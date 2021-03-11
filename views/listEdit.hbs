@@ -1,0 +1,7 @@
+<form action="/lists/update/{{list._id}}" method="post">
+    <div class="create_list_form">
+        <label for="list-create-name" name="name" placeholder="Enter list name">Name</label>
+        <input type="text" name="name" id="list-create-name"  value='{{list.name}}'>
+    </div>
+    <button>Update the list</button>
+</form>

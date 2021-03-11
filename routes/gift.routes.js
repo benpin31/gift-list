@@ -50,6 +50,7 @@ router.post(
   uploader.single("picture"),
   async (req, res, next) => {
     const newGift = { ...req.body };
+    newGift.isFavorite = newGift.isFavorite ? true : false ;
     if (req.file) {
       newGift.picture = req.file.path;
     } else {
