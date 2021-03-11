@@ -1,14 +1,22 @@
 <form action="/signin" method="POST">
+<div class="create_list_form">
+<div class="page_title">Sign In</div>
+ <label for="email">Email</label>
+ <input type="text" name="email" placeholder="Enter your email">
 
- <label for="email">Email:</label>
- <input type="text" name="email" placeholder="Your email" value="augustin.leman@gmail.com">
  
- <label for="password">Password:</label>
- <input type="password" name="password" placeholder="********" value="motdepasse">
+ 
+ <label for="password">Password</label>
+ <input type="password" name="password" placeholder="Enter your password">
  
  {{#if errorMessage}}
  <div class="error-message">{{errorMessage}}</div>
  {{/if}}
- 
- <button>Log in</button>
+ <button class="btn_all_width">Log in</button>
+
+ <p class="text_center">You don't have an account? <a href="/signup" class="link_style">Sign up here</a></p>
+
+
+
+</div>
 </form>

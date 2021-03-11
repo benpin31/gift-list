@@ -1,9 +1,9 @@
 <section class="create_list_form">
-<h1>Create a gift</h1>
+<div class="page_title">Create a gift</div>
 <form action="/gifts/create/{{listId}}" method="post" class="createGift" enctype="multipart/form-data">
 
 <label for="name">Name</label>
-<input class="input" type="text" id="name" name="name">
+<input class="input" type="text" id="name" name="name" required>
 
 <label for="brand">Brand</label>
 <input class="input" type="text" id="brand" name="brand">
@@ -38,9 +38,12 @@
 <a href="/">Add a new event</a> --}}
 
 <label for="isFavorite">is Favorite ?</label>
-<input class="input" type="checkbox" id="isFavorite" name="isFavorite">
+<label class="switch">
+  <input type="checkbox"  id="isFavorite" name="isFavorite">
+  <span class="slider round"></span>
+</label>
 
-<button class=".create_list_btn">Add gift</button>
+<button class="btn_all_width">Add gift</button>
 
 </form>
 </section>

@@ -26,8 +26,8 @@ const listRouter = require("./routes/list");
 const eventRouter = require("./routes/event");
 const authRouter = require("./routes/auth.routes");
 
-// local variable
-// app.locals.userId = "6048a52cf21c450d65d915b5";
+// // local variable
+// app.locals.userId = "6048e241d639c3098718b7f6";
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
