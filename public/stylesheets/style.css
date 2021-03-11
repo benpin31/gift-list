@@ -41,6 +41,13 @@ select {
 }
 
 
+button {
+  background-color:#3967ff;
+  border: none;
+  color: white;
+  padding: 10px;
+}
+
 .container {
   margin:10px;
   padding-top:50px;

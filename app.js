@@ -48,10 +48,10 @@ app.use(
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: false, // <== false if you don't want to save empty session object to the store
+    saveUninitialized: true, // <== false if you don't want to save empty session object to the store
     cookie: {
-      sameSite: "none",
-      httpOnly: true,
+      // sameSite: "none",
+      // httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24, // 24h * 60 min *60 s * 1000 ms === 1 day
     },
   })
