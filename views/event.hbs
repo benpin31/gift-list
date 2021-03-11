@@ -1,15 +1,18 @@
-<div class="search"> 
+<div class="filter"> 
         <form action="">
-            <label for="isAvailaible">Available</label>  
+               <label for="isAvailaible">Available</label>  
+                <label class="switch">
             <input type="checkbox"  id="isAvailaible" name="isAvailaible">
+            <span class="slider round"></span>
+            </label>
         </form>
-        <form>
-            <a id="increase-filter"><i class="fas fa-sort-amount-down-alt"></i></a>
-            <a id="decrease-filter"><i class="fas fa-sort-amount-down"></i></a>
+        <form class="sort">
+            <a id="increase-filter"><i class="fas fa-sort-amount-down-alt"></i>Ascending</a>
+            <a id="decrease-filter"><i class="fas fa-sort-amount-down"></i>Descending</a>
         </select>
         </form> 
     </div>
-    <div class="page_title">{{event.name}}</div> 
+<div class="page_title2 push-down">{{event.name}}</div> 
 <div class="create_list_form">
     {{!-- {{event._id}} --}}
     {{#each event.lists}}
@@ -27,10 +30,10 @@
                         <button class="btn_all_width">Add a list</button>  
         </form>
         <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
-            <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
+            <input type="email" name="email" id="list-add-to-user" placeholder="Enter the email you want to invite">
             <button class="btn_all_width">Invite someone to the event</button>
         </form>
-        <button class="btn_all_width" id="share_btn">Share your {{event.name}}'s list(s)</button>
+        <a class="share" id="share_btn"><i class="fas fa-share-alt"></i> Share your {{event.name}}'s list(s)</a>
      {{/if}}
     </div>
 </div>

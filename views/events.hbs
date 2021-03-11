@@ -3,12 +3,21 @@
     <div class="create_list_form">
     <div class="page_title">My events</div>
     {{#each events}} 
+<div class="list-container">
     <div class="list-container">
-        <a href="/events/{{this._id}}">{{this.name}}</a>
-        <div id="event-crud">
-            <a href="/events/update/{{this._id}}"><i class="fas fa-edit" style="color:blue"></i></a>
+        <div class="list_item">
+            <a href="/events/{{this._id}}">{{this.name}}</a>
+        </div>
+        
+        <div class="edit_item">
+            <a href="/events/update/{{this._id}}"><i class="fas fa-edit"></i></a>
+        </div>
+
+        <div class="delete_item">
             <a href="/events/delete/{{this._id}}"><i class="fas fa-trash-alt red"></i></a>
         </div>
+            
+            
     </div>
     {{/each}}
     

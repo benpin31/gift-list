@@ -1,3 +1,5 @@
+<div class="create_list_form">
+
 {{> gift gift}}
 
     <form action="/events/{{eventId}}/book/{{gift._id}}" method="post">
@@ -5,7 +7,9 @@
         <input class="input" type="text" id="name" name="name">
         <label for="message">Your message:</label>
         <textarea name="message" id="message" cols="30" rows="10"></textarea>
-        <button class="button-primary book-gift-btn">I'll buy the <i class="fas fa-gift"></i></button>
+        <button class="btn_all_width">I'll buy the</button>
     </form>
   </div>
+</div>
+
 </div>
