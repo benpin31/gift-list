@@ -84,4 +84,6 @@ router.delete("/delete/:id", async (req, res, next) => {
   }
 });
 
+//* GET modify user profile
+
 module.exports = router;
