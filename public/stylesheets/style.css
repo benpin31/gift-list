@@ -42,7 +42,9 @@ button {
   background-color:#3967ff;
   border: none;
   color: white;
+  padding: 10px;
 }
+
 .container {
   margin:10px;
   padding-top:50px;
@@ -51,6 +53,7 @@ button {
 #page_title {
   align-self: center;
 }
+
 
 /* .btn {
   height: 120px;
@@ -71,8 +74,7 @@ button {
   height: 50px;
   background: #3967ff;
   display: flex;
-  
-  
+  z-index: 1;
 }
 
 .header__button {
@@ -82,6 +84,7 @@ button {
   border: none;
   color: #ffffff;
   cursor: pointer;
+  padding: 0;
 }
 
 .nav__links {
@@ -143,6 +146,26 @@ button {
   opacity: 1;
 }
 
+.list {
+  padding-bottom:60px;
+}
+
+.manage-list {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.event-list-container {
+  margin-bottom: 20px;
+}
+
+.event-list-container > h2 {
+  background-color: #3967ff;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
 .list-container{
   border: 1px solid rgb(194, 194, 194) ;
   display: flex ;
@@ -164,7 +187,7 @@ button {
 
 .gift_list{
   border: 1px solid rgb(194, 194, 194) ;
-
+  position: relative ;
   color: rgb(26, 26, 26);
   list-style: none;
   display: flex;
@@ -291,6 +314,28 @@ select {
   height: 10px;
   /* position: relative;
   left: -10px; */
-  background-color: red;
   display: inline-block;
+}
+
+.state {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 150px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.state div {
+  text-align: right;
+}
+
+.free {
+  background-color: #3967ff;
+}
+
+.unavailable {
+  background-color:grey;
 }

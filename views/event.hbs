@@ -1,26 +1,28 @@
 <div class="list">
     {{#each event.lists}}
-        <h2>{{this.name}}</h2>
-        {{> list name=this.name gifts=this.gifts eventId=../event._id}}
+        <div class="event-list-container">
+            <h2>{{this.name}} list</h2>
+            {{> list name=this.name gifts=this.gifts eventId=../event._id}}
+        </div>
     {{/each}}
 
     {{#if isConnected}} 
-    <form action="/events/addlist/{{event._id}}" method="post">
-        <label for="list-add-gifts"></label>
-        <select name="list" id="list-add-gifts" multiple>
-        {{#each lists}}
-            <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-        </select>   
-        <button>Add a list</button>
-    </form>
 
-    <form action="/events/addToUser/{{event._id}}" method="post">
-        <label for="list-add-to-user"></label>
-        <input type="email" name="email" id="list-add-to-user">
-        <button>Add to the user</button>
-    </form>
+    <div class="manage-list">
+        <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
+            <button>Add a list</button>
+            <select name="list" id="list-add-gifts" multiple>
+            {{#each lists}}
+                <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+            </select>   
+        </form>
 
-    <a href="/lists/delete/{{list._id}}">Delete the list</a> --}}
+        <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
+            <button>Share with another user</button>
+            <label for="list-add-to-user"></label>
+            <input type="email" name="email" id="list-add-to-user" placeholder="francis@gmail.com">
+        </form>
+    </div>
     {{/if}}
 </div>

@@ -5,11 +5,11 @@
         <h4 class="gift_name">{{this.name}}</h4>
         <h2 class="gift_price">{{this.price}}€</h2>
     </div>
-        <div class="state">
+        <div class="state {{#if this.isAvailable}}free{{else}}unavailable{{/if}}">
         {{#if this.isAvailable}}
-            <i class="fas fa-store-alt not-bought"></i> <a href="/events/{{../eventId}}/book/{{this._id}}">Not bought yet</a> 
+            <i class="fas fa-store-alt not-bought"></i> <a href="/events/{{../eventId}}/book/{{this._id}}">Choose it</a> 
         {{else}}
-            <i class="fas fa-store-alt bought"></i>{{#each this.gifters}}{{this.name}} {{/each}} bought it
+            <i class="fas fa-store-alt bought"></i> <div>Bought by {{#each this.gifters}}{{#if this.name}}{{this.name}}{{else}}someone{{/if}} </div> {{/each}}
         {{/if}}
         </div>
 </div>
