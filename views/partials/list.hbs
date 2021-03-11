@@ -9,7 +9,11 @@
     </div>
         <div class="state {{#if this.isAvailable}}free{{else}}unavailable{{/if}}">
         {{#if this.isAvailable}}
+            {{#if ../eventId}}
             <a class="not-bought" href="/events/{{../eventId}}/book/{{this._id}}">Choose it</a> 
+            {{else}}
+            <div class="not-bought">Not bought yet</div>
+            {{/if}}
         {{else}}
          <div class="bought">Bought by {{#each this.gifters}}{{#if this.name}}{{this.name}}{{else}}someone{{/if}} </div> {{/each}}
         {{/if}}
