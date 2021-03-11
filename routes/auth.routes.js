@@ -29,10 +29,13 @@ router.post("/signup", async (req, res, next) => {
     //* 3. Create the hashed password and the user
     const hashedPassword = bcrypt.hashSync(newUser.password, bcryptSalt);
     newUser.password = hashedPassword;
-    await UserModel.create(newUser);
-    console.log("req.login", req.login);
-    res.render("signin", {
-      msg: { status: "success", text: "Congrats ! You are now registered !" },
+    const insertedUser = await UserModel.create(newUser);
+    // Automatic login
+    req.login(insertedUser, function (err) {
+      if (err) {
+        console.log(err);
+      }
+      res.render("index", { req });
     });
   } catch (err) {
     let errorMessage = "";
