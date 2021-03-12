@@ -12,7 +12,8 @@
         </select>
         </form> 
     </div>
-<div class="page_title2 push-down">{{event.name}}</div> 
+<div class="page_title push-down">{{event.name}}</div>
+{{!-- <div class="page_subtitle push-down">{{event.date}}</div>  TODO: make date work--}}
 <div class="create_list_form">
     {{!-- {{event._id}} --}}
     {{#each event.lists}}
@@ -22,18 +23,22 @@
     {{#if isConnected}} 
         <div class="manage-list">
         <form action="/events/addlist/{{event._id}}" method="post" class="create_list_form">
+            <p>Add a list to the event</p>
             <select name="list" id="list-add-gifts" multiple>
             {{#each lists}}
                 <option value="{{this._id}}">{{this.name}}</option>
             {{/each}}
             </select> 
-                        <button class="btn_all_width">Add a list</button>  
+            <button class="btn_all_width_sec">Add list</button>  
         </form>
         <form action="/events/addToUser/{{event._id}}" method="post" class="create_list_form">
-            <input type="email" name="email" id="list-add-to-user" placeholder="Enter the email you want to invite">
-            <button class="btn_all_width">Invite someone to the event</button>
+            <p>Invite a guest to this event to add his/her list.s</p>
+            <input type="email" name="email" id="list-add-to-user" placeholder="Guest email">
+            <button class="btn_all_width">Invite</button>
         </form>
-        <a class="share" id="share_btn"><i class="fas fa-share-alt"></i> Share your {{event.name}}'s list(s)</a>
+        <a class="share" id="share_btn">
+                <i class="fas fa-share-alt"></i> Share {{event.name}} with everyone
+        </a>
      {{/if}}
     </div>
 </div>

@@ -1,38 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-
-
-
-  * {
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 a {
   color: black;
   text-decoration: none;
 }
-input {
-  border: 1px solid rgb(194, 194, 194) ;
-  padding: 15px;
-  border-radius: 3px;
-}
 
 textarea {
-  border: 1px solid rgb(194, 194, 194) ;
+  border: 1px solid rgb(194, 194, 194);
   padding: 15px;
   border-radius: 3px;
   width: 100%;
 }
 
-
 select {
-  border: 1px solid rgb(194, 194, 194) ;
+  border: 1px solid rgb(194, 194, 194);
   padding: 15px;
 }
 
@@ -41,23 +32,21 @@ select {
   flex-direction: column;
 }
 
-
 button {
-  background-color:#3967ff;
+  background-color: #3967ff;
   border: none;
   color: white;
   padding: 10px;
 }
 
 .container {
-  margin:10px;
-  padding-top:50px;
+  margin: 10px;
+  padding-top: 50px;
 }
 
 #page_title {
   align-self: center;
 }
-
 
 /* .btn {
   height: 120px;
@@ -78,7 +67,7 @@ button {
   height: 50px;
   background: #3967ff;
   display: flex;
-  z-index: 1 ;
+  z-index: 1;
 }
 
 .header__button {
@@ -153,7 +142,7 @@ button {
 }
 
 .list {
-  padding-bottom:60px;
+  padding-bottom: 60px;
 }
 
 .manage-list {
@@ -172,8 +161,8 @@ button {
   padding: 10px;
 }
 
-.list-container{
-  display: flex ;
+.list-container {
+  display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
@@ -191,43 +180,41 @@ button {
 
 .list_item {
   display: inline-block;
-  border: 1px solid rgb(194, 194, 194) ;
-  padding: 10px ; 
+  border: 1px solid rgb(194, 194, 194);
+  padding: 10px;
   margin: 5px 0;
   border-radius: 3px;
   width: 70vw;
   /* text-align: center; */
 }
 
-.edit_item{
+.edit_item {
   color: #3967ff !important;
   display: inline-block;
-  border: 1px solid #3967ff ;
-  padding: 10px ;
+  border: 1px solid #3967ff;
+  padding: 10px;
   margin: 5px 0;
   border-radius: 3px;
   width: 10vw;
   text-align: center;
-  
 }
 
-.delete_item{
+.delete_item {
   text-align: center;
   display: inline-block;
-  border: 1px solid rgb(255, 141, 141) ;
-  padding: 10px ;
-  
+  border: 1px solid rgb(255, 141, 141);
+  padding: 10px;
+
   border-radius: 3px;
   width: 10vw;
 }
-
 
 .red {
   color: rgb(255, 122, 122);
 }
 
-.gift_list{
-  border: 1px solid rgb(194, 194, 194) ;
+.gift_list {
+  border: 1px solid rgb(194, 194, 194);
   position: relative;
   display: flex;
   justify-content: center;
@@ -246,47 +233,46 @@ button {
 .gift_image {
   object-fit: cover;
   left: 0;
-  position: absolute; 
+  position: absolute;
   width: 50%;
   height: 100%;
 }
 
 .gift_name {
   position: absolute;
-  right:0;
+  right: 0;
   top: 0;
   padding: 10px;
   text-align: right;
 }
 .gift_price {
   position: absolute;
-  right:0;
+  right: 0;
   top: 10%;
   padding: 10px;
   text-align: right;
 }
 .state {
   position: absolute;
-  right:0;
+  right: 0;
   bottom: 0;
   padding: 10px;
   text-align: left;
-
 }
 
 .not-bought {
-  padding:2px;
+  padding: 2px;
   background-color: rgb(223, 223, 223);
   color: rgb(112, 112, 112);
   border-radius: 2px;
   border: 1px solid rgb(112, 112, 112);
-  padding:5px;
+  padding: 5px;
 }
 
 .not-bought {
   background-color: rgb(196, 255, 240);
   color: black;
-  padding:5px;
+  padding: 5px;
   border-radius: 2px;
   border: 1px solid rgb(136, 136, 136);
 }
@@ -296,24 +282,22 @@ button {
   position: fixed;
   bottom: 0px;
   background-color: #3967ff;
-  padding: 10px ;
-  margin: 10px ;
+  padding: 10px;
+  margin: 10px;
   border-radius: 3px;
   bottom: 0px;
   text-align: center;
   height: 40px;
-  
 }
 
 .fixed-foot {
   position: fixed;
   height: 60px;
-  bottom: 0 ;
-  left: 0 ;
+  bottom: 0;
+  left: 0;
   background-color: white;
   width: 100%;
 }
-
 
 .add_gift select {
   width: 80%;
@@ -328,16 +312,13 @@ button {
   border-radius: 0 3px 3px 0;
 }
 
-
-
 .add_gift {
   width: 100%;
   display: flex;
 }
 
-
 .form_style {
-  padding-top:10px;
+  padding-top: 10px;
   float: left;
 }
 
@@ -347,7 +328,7 @@ button {
 }
 
 .form_style button {
-  background-color:#3967ff;
+  background-color: #3967ff;
   width: 50px;
   height: 50px;
 }
@@ -356,8 +337,8 @@ button {
   color: white;
   position: fixed;
   background-color: rgb(255, 122, 122);
-  padding: 10px ;
-  margin: 10px ;
+  padding: 10px;
+  margin: 10px;
   border-radius: 3px;
   bottom: 0px;
   right: 0px;
@@ -369,12 +350,16 @@ button {
   text-align: center;
 }
 
-.create_list_form input {
+input {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 5px 0;
   display: inline-block;
   box-sizing: border-box;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 3px;
 }
 
 select {
@@ -388,8 +373,8 @@ select {
   color: white;
   position: fixed;
   background-color: #3967ff;
-  padding: 10px ;
-  margin: 10px ;
+  padding: 10px;
+  margin: 10px;
   border-radius: 3px;
   bottom: 0px;
   left: 0px;
@@ -397,21 +382,31 @@ select {
 
 .btn_all_width {
   width: 100%;
-  background-color:#3967ff;
+  background-color: #3967ff;
   border: none;
   height: 47px;
   border-radius: 3px;
   color: white;
-  margin-top: 10px;
-  
+  margin: 5px 0 15px 0;
   font-weight: bold;
   cursor: pointer;
 }
 
+.btn_all_width_sec {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #3967ff;
+  height: 47px;
+  border-radius: 3px;
+  color: #3967ff;
+  margin: 5px 0 15px 0;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 .container_header {
   text-align: center;
-  padding:10px;
+  padding: 10px;
 }
 
 .text_center {
@@ -423,33 +418,37 @@ select {
   color: #3967ff;
 }
 
-
 .fix_link_style_btn {
   color: white;
 }
 
 .page_title {
-  font-family: 'Poppins', sans-serif;
-  font-size: x-large;
-  padding-bottom: 20px;
+  font-size: xx-large;
+  font-family: "Poppins", sans-serif;
 }
 
-input {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+.page_title2 {
+  font-family: "Poppins", sans-serif;
+  font-size: x-large;
+  padding: 10px 0;
+}
+
+.page_subtitle {
+  font-size: large;
+  font-family: "Poppins", sans-serif;
 }
 
 select option {
- height: 30px;
+  height: 30px;
 }
 
 .btn {
-  background-color:#3967ff;
+  background-color: #3967ff;
   border: none;
   height: 47px;
   border-radius: 3px;
   color: white;
-  padding:10px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -457,21 +456,20 @@ select option {
   display: inline;
 }
 
-.invite_user {
+/* .invite_user {
   margin-top: 10px;
 }
 
 .invite_user input {
   display: inline;
   width: 85%;
-}
+} */
 
 p {
   text-align: justify;
   text-justify: inter-word;
   line-height: 24px;
 }
-
 
 /* The switch - the box around the slider */
 .switch {
@@ -497,8 +495,8 @@ p {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -509,8 +507,8 @@ p {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -546,7 +544,6 @@ input:checked + .slider:before {
   justify-content: center;
   align-items: center;
   color: red;
-
 }
 
 .filter {
@@ -561,12 +558,12 @@ input:checked + .slider:before {
   padding-left: 10px;
   background-color: #f1f1f1;
   align-items: center;
-  z-index: 1 ;
+  z-index: 1;
 }
 
-.push-down{
+.push-down {
   position: relative;
-  padding-top:50px;
+  padding-top: 50px;
 }
 
 .filter label {
@@ -579,17 +576,14 @@ input:checked + .slider:before {
   align-items: center;
   /* justify-content: center; */
   padding-right: 5px;
-  
+}
+
+form.pick_gift {
+  padding: 20px 0;
 }
 
 .three_button {
   display: flex;
-}
-
-.page_title2 {
-  font-size: xx-large;
-  font-family: 'Poppins', sans-serif;
-  padding-bottom: 10px;
 }
 
 .share {

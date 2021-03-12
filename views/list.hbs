@@ -1,16 +1,24 @@
 <div class="list">
     {{> list list}}
-    <form action="/lists/addGift/{{list._id}}" method="post">
+    {{#if gifts}}
+    <a href="/gifts/create/{{list._id}}">
+        <button class="btn_all_width">
+            Create a new gift
+        </button>
+    </a> 
+    {{/if}}
+    <form class="pick_gift" action="/lists/addGift/{{list._id}}" method="post">
         {{#if gifts}}
-        <label for="list-add-gifts">Select to add the gift to the list</label>
+        <label for="list-add-gifts">Pick an existing gift from the list below</label>
         <select name="gifts" id="list-add-gifts" multiple>
         {{#each gifts}}
             <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
         </select>
-        <button  class="btn">Add a gift</button>
+        <button  class="btn_all_width_sec">Add an existing gift</button>
         {{/if}}
     </form>
+
     {{#unless gifts}}
     <div class="flex">
         <img style="width=100%" src="/img/create_gift.png" alt="">
@@ -18,15 +26,11 @@
         <a class="btn_all_width" href="/gifts/create/{{list._id}}">Create a gift</a>
     </div>
     {{/unless}}
-    <form action="/lists/addToUser/{{list._id}}" method="post" class="invite_user">
-        <label for="list-add-to-user">Invite a collaborator to the list via Email</label>
-        <input type="email" name="email" id="list-add-to-user" placeholder="Enter colaborator's email">
-        <button class="btn">Invite</button>
+    <form action="/lists/addToUser/{{list._id}}" method="post" class="invite_user .form_style">
+        <label for="list-add-to-user">Allow someone to edit the list</label>
+        <input type="email" name="email" id="list-add-to-user" placeholder="His/her email">
+        <button class="btn_all_width_sec">Share the list</button>
     </form>
     <div class="flex">
-        {{#if gifts}}
-    <a class="create_gift" href="/gifts/create/{{list._id}}">Create a gift</a>   
-    {{/if}}
-    <a class="delete_list" href="/lists/delete/{{list._id}}">Delete the list</a>
     </div>
 </div>
