@@ -7,13 +7,18 @@
     {{#if this.isFavorite}}
     <p><i class="fas fa-heart"></i></p>
     {{/if}}
-      <h1 class="gift-name">{{this.name}}</h1>
+      <h3 class="gift-name">{{this.name}}</h3>
     {{#if this.brand}}
-      <p class="gift brand">by {{this.brand}}</p>
+      <h4 class="gift brand"><b>By</b> {{this.brand}}</h4>
     {{/if}}
     {{#if this.price}}
-      <h4 class="gift-price">{{this.price}} {{this.currency}}</h4>
+      <h3 class="gift-price">{{this.price}} {{this.currency}}</h3>
     {{/if}}
     {{#if this.comment}}
-      <p class="comment">Comment: {{this.comment}}</p>
+      <p class="comment"><b>Comment :</b> {{this.comment}}</p>
     {{/if}}
+</div>
+</div>
+
+
+    

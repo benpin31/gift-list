@@ -262,19 +262,19 @@ button {
 
 .not-bought {
   padding: 2px;
-  background-color: rgb(223, 223, 223);
-  color: rgb(112, 112, 112);
+  background-color: white;
+  border: 1px solid #3967ff;
+  color: #3967ff;
   border-radius: 2px;
-  border: 1px solid rgb(112, 112, 112);
   padding: 5px;
+  font-size: 14px;
 }
 
-.not-bought {
-  background-color: rgb(196, 255, 240);
+.bought {
+  
+  font-size: 14px;
   color: black;
-  padding: 5px;
-  border-radius: 2px;
-  border: 1px solid rgb(136, 136, 136);
+
 }
 
 .create_list {
@@ -591,4 +591,33 @@ form.pick_gift {
   text-align: center;
   text-decoration: underline;
   cursor: pointer;
+}
+
+
+
+.sort a {
+  color: #3967ff;
+  padding-right: 10px;
+}
+
+hr.solid {
+  border: 0.01em solid rgb(233, 233, 233);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.gift-info {
+  position: relative;
+  
+  justify-content: center;
+  align-items: center;
+}
+
+
+.gift-price {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 18px;
+  text-align: right;
 }

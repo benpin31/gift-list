@@ -1,11 +1,10 @@
 <div class="list">
     {{> list list}}
     {{#if gifts}}
-    <a href="/gifts/create/{{list._id}}">
-        <button class="btn_all_width">
+    
+        <a href="/gifts/create/{{list._id}}" class="btn_all_width">
             Create a new gift
-        </button>
-    </a> 
+        </a>
     {{/if}}
     <form class="pick_gift" action="/lists/addGift/{{list._id}}" method="post">
         {{#if gifts}}
