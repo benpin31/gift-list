@@ -2,9 +2,9 @@
     {{> list list}}
     {{#if gifts}}
     
-        <a href="/gifts/create/{{list._id}}" class="btn_all_width">
+        <button href="/gifts/create/{{list._id}}" class="btn_all_width">
             Create a new gift
-        </a>
+        </button>
     {{/if}}
     <form class="pick_gift" action="/lists/addGift/{{list._id}}" method="post">
         {{#if gifts}}
@@ -22,7 +22,11 @@
     <div class="flex">
         <img style="width=100%" src="/img/create_gift.png" alt="">
         <p>Oh, you have no gifts, please create a new gift!  </p>
-        <a class="btn_all_width" href="/gifts/create/{{list._id}}">Create a gift</a>
+        <a href="/gifts/create/{{list._id}}">
+            <button class="btn_all_width">Create a gift</button>
+        </a>
+        
+        
     </div>
     {{/unless}}
     <form action="/lists/addToUser/{{list._id}}" method="post" class="invite_user .form_style">
