@@ -88,6 +88,7 @@ router.delete("/profile/delete/", async (req, res, next) => {
 router.get("/profile", async (req, res, next) => {
   try {
     const userToModify = await UserModel.findById(req.user._id);
+    console.log("userToModify", userToModify);
     res.render("profile", userToModify);
   } catch (error) {
     next(error);
