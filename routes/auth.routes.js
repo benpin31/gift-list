@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const UserModel = require("./../model/user"); //Path to UserModel
 const passport = require("passport");
+const protectPrivateRoute = require("./../middleware/protectRoute");
 
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
@@ -68,24 +69,24 @@ router.post(
 );
 
 //* GET signout
-router.get("/signout", (req, res, next) => {
+router.get("/signout", protectPrivateRoute, (req, res, next) => {
   req.session.destroy(function (err) {
-    res.redirect("signin");
+    res.redirect("/signin");
   });
 });
 
 //* DELETE  user
-router.delete("/profile/delete/", async (req, res, next) => {
+router.get("/profile/delete", protectPrivateRoute, async (req, res, next) => {
   try {
-    const { userId } = req.user._id;
-    await UserModel.findById(userId);
+    await UserModel.findByIdAndDelete(req.user.id);
+    res.redirect("/signup")
   } catch (error) {
     next(error);
   }
 });
 
 //* GET modify user profile
-router.get("/profile", async (req, res, next) => {
+router.get("/profile", protectPrivateRoute, async (req, res, next) => {
   try {
     const userToModify = await UserModel.findById(req.user._id);
     res.render("profile", userToModify);
