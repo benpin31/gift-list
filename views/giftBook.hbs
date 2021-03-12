@@ -1,13 +1,13 @@
 <div class="create_list_form">
 
 {{> gift gift}}
-
+<hr class="solid">
     <form action="/events/{{eventId}}/book/{{gift._id}}" method="post">
         <label for="name">Your name</label>
-        <input class="input" type="text" id="name" name="name">
-        <label for="message">Your message:</label>
-        <textarea name="message" id="message" cols="30" rows="10"></textarea>
-        <button class="btn_all_width">I'll buy the</button>
+        <input class="input" type="text" id="name" name="name" placeholder="Enter your name" required>
+        <label for="message">Your message</label>
+        <input type="text" name="message" id="message" cols="30" rows="10" placeholder="Enter a message that the receiver will read when he'll get your gift"></input>
+        <button class="btn_all_width">I'll buy this gift</button>
     </form>
   </div>
 </div>
