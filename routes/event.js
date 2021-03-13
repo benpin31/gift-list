@@ -193,6 +193,10 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
       });    
     }
 
+    // if (req.user) {
+
+    // }
+
     res.render("event", {event, lists: req.userLists, isConnected: Boolean(req.user)});
   } catch(err) {
     next(err)
