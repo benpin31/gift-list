@@ -193,11 +193,12 @@ router.get("/:id", getUserGifts, async (req, res, next) => {
       });    
     }
 
-    // if (req.user) {
+    let isConnected = false;
+    if (req.user) {
+      isConnected= (await userModel.find({$and: [{_id: req.user._id}, {events: {$in: [req.params.id]}}]})).length > 0
+    }
 
-    // }
-
-    res.render("event", {event, lists: req.userLists, isConnected: Boolean(req.user)});
+    res.render("event", {event, lists: req.userLists, isConnected: isConnected});
   } catch(err) {
     next(err)
   }
